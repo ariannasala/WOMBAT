@@ -1,0 +1,3305 @@
+
+<!DOCTYPE html>
+
+
+<html lang="python" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Demonstration of the Available Metrics &#8212; WOMBAT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=30a733bc"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/metrics_demonstration';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples Reference" href="examples_reference.html" />
+    <link rel="prev" title="Servicing Strategies" href="strategy_demonstration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="python"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">WOMBAT</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WISDEM/WOMBAT" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/WOMBAT/" title="PyPI version" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://img.shields.io/pypi/v/WOMBAT" class="icon-link-image" alt="PyPI version"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/WOMBAT/" title="PyPI downloads" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://img.shields.io/pypi/dm/WOMBAT" class="icon-link-image" alt="PyPI downloads"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mybinder.org/v2/gh/WISDEM/WOMBAT/main?filepath=examples" title="Launch Binder" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://mybinder.org/badge_logo.svg" class="icon-link-image" alt="Launch Binder"/></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributor's Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../presentations.html">Presentations and Publications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../workshops/index.html">Workshops</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workshops/nawea_wind_tech_2023.html">NAWEA WindTech 2023 WOMBAT Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../team.html">Team</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Working With the Code Base</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User Guide</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="how_to.html">How To Use WOMBAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy_demonstration.html">Servicing Strategies</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Demonstration of the Available Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples_reference.html">Examples Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../API/index.html">WOMBAT API</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../API/simulation_api.html">Simulation API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../API/types.html">Data Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../API/core.html">Simulation Core Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../API/windfarm.html">Wind Farm Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../API/utilities.html">Helpers and Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/examples/metrics_demonstration.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Demonstration of the Available Metrics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-parameter-explanations">Common Parameter Explanations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency"><code class="docutils literal notranslate"><span class="pre">frequency</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by"><code class="docutils literal notranslate"><span class="pre">by</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#availability">Availability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#capacity-factor">Capacity Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-completion-rate">Task Completion Rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-costs">Equipment Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#service-equipment-utilization-rate">Service Equipment Utilization Rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vessel-crew-hours-at-sea">Vessel-Crew Hours at Sea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-tows">Number of Tows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labor-costs">Labor Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-and-labor-costs">Equipment and Labor Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emissions">Emissions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-costs">Component Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-cost-impacts">Fixed Cost Impacts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opex">OpEx</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-times">Process Times</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-production">Power Production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-present-value">Net Present Value</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="demonstration-of-the-available-metrics">
+<span id="metrics-demo"></span><h1>Demonstration of the Available Metrics<a class="headerlink" href="#demonstration-of-the-available-metrics" title="Link to this heading">#</a></h1>
+<p>For a complete list of metrics and their documentation, please see the API Metrics
+<a class="reference internal" href="../API/simulation_api.html#simulation-api-metrics"><span class="std std-ref">documentation</span></a>.</p>
+<p>This demonstration will rely on the results produced in the &quot;How To&quot; notebook and serves
+as an extension of the API documentation to show what the results will look like
+depending on what inputs are provided.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas.io.formats.style</span> <span class="kn">import</span> <span class="n">Styler</span>
+
+<span class="kn">from</span> <span class="nn">wombat.core</span> <span class="kn">import</span> <span class="n">Simulation</span><span class="p">,</span> <span class="n">Metrics</span>
+
+<span class="c1"># Clean up the aesthetics for the pandas outputs</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">style</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+  <span class="n">Styler</span><span class="p">,</span>
+  <span class="n">table_attributes</span><span class="o">=</span><span class="s1">&#39;style=&quot;font-size: 14px; grid-column-count: 6&quot;&#39;</span><span class="p">,</span>
+  <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+  <span class="n">thousands</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="table-of-contents">
+<span id="metrics-demo-toc"></span><h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<p>Below is a list of top-level sections to demonstrate how to use WOMBAT's <code class="docutils literal notranslate"><span class="pre">Metrics</span></code>
+class methods and an explanation of each individual metric.</p>
+<p>If you don't see a metric or result computation that is core to your work, please submit
+an <a class="reference external" href="https://github.com/WISDEM/WOMBAT/issues/new">issue</a> with details on what the metric
+is, and how it should be computed.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#metrics-demo-setup"><span class="std std-ref">Setup</span></a>: Running a simulation to gather the results</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">Common Parameters</span></a>: Explanation of frequently used
+parameter settings</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-availability"><span class="std std-ref">Availability</span></a>: Time-based and energy-based availability</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-cf"><span class="std std-ref">Capacity Factor</span></a>: Gross and net capacity factor</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-task-completion"><span class="std std-ref">Task Completion Rate</span></a>: Task completion metrics</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-equipment-costs"><span class="std std-ref">Equipment Costs</span></a>: Cost breakdowns by servicing equipment</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-utilization-rate"><span class="std std-ref">Service Equipment Utilization Rate</span></a>: Utilization
+of servicing equipment</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-vessel-crew-hours"><span class="std std-ref">Vessel-Crew Hours at Sea</span></a>: Number of crew or vessel hours
+spent at sea</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-n-tows"><span class="std std-ref">Number of Tows</span></a>: Number of tows breakdowns</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-labor-costs"><span class="std std-ref">Labor Costs</span></a>: Breakdown of labor costs</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-equipment-labor-costs"><span class="std std-ref">Equipment and Labor Costs</span></a>: Combined servicing equipment
+and labor cost breakdown</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-emissions"><span class="std std-ref">Emissions</span></a>: Emissions of servicing equipment based on activity</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-component-costs"><span class="std std-ref">Component Costs</span></a>: Materials costs</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-fixed-costs"><span class="std std-ref">Fixed Cost Impacts</span></a>: Total fixed costs</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-opex"><span class="std std-ref">OpEx</span></a>: Project OpEx</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-process-times"><span class="std std-ref">Process Times</span></a>: Timing of various stages of repair and maintenance</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-power-production"><span class="std std-ref">Power Production</span></a>: Potential and actually produced power</p></li>
+<li><p><a class="reference internal" href="#metrics-demo-npv"><span class="std std-ref">Net Present Value</span></a>: Project NPV calculator</p></li>
+</ul>
+</section>
+<section id="setup">
+<span id="metrics-demo-setup"></span><h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p>The simulations from the <em>How To</em> notebook are going to be rerun as it is not
+recommended to create a Metrics class from scratch due to the large number of inputs
+that are required, and the initialization is provided in the simulation API's run method.</p>
+<p>To simplify this process, a feature has been added to save the simulation outputs
+required to generate the Metrics inputs and a method to reload those outputs as inputs.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="s2">&quot;DINWOODIE&quot;</span><span class="p">,</span> <span class="s2">&quot;base.yaml&quot;</span><span class="p">)</span>
+
+<span class="c1"># Both of these parameters are True by default for convenience</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">create_metrics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_metrics_inputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Load the metrics data</span>
+<span class="n">fpath</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">metrics_input_fname</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">metrics_input_fname</span><span class="o">.</span><span class="n">name</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">Metrics</span><span class="o">.</span><span class="n">from_simulation_outputs</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+
+<span class="c1"># Delete the log files now that they&#39;re loaded in</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">cleanup_log_files</span><span class="p">()</span>
+
+<span class="c1"># Alternatively, in this case because the simulation was run, we can use the</span>
+<span class="c1"># following for convenience convenience only</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">metrics</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10/site-packages/wombat/core/environment.py:503: FutureWarning: &#39;H&#39; is deprecated and will be removed in a future version, please use &#39;h&#39; instead.
+  .resample(&quot;H&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="common-parameter-explanations">
+<span id="metrics-demo-common-parameters"></span><h2>Common Parameter Explanations<a class="headerlink" href="#common-parameter-explanations" title="Link to this heading">#</a></h2>
+<p>Before diving into each and every metric, and how they can be customized, it is worth
+noting some of the most common parameters used throughout, and their meanings to reduce
+redundancy. The varying output forms are demonstrated in the
+<a class="reference internal" href="#metrics-demo-availability"><span class="std std-ref">availability</span></a> section below.</p>
+<section id="frequency">
+<h3><code class="docutils literal notranslate"><span class="pre">frequency</span></code><a class="headerlink" href="#frequency" title="Link to this heading">#</a></h3>
+<dl class="simple myst">
+<dt>project</dt><dd><p>Computed across the whole simulation, with the resulting <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> having an empty
+index.</p>
+</dd>
+<dt>annual</dt><dd><p>Summary of each year in the simulation, with the resulting <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> having &quot;year&quot;
+as the index.</p>
+</dd>
+<dt>monthly</dt><dd><p>Summary of each month of the year, aggregated across years, with the resulting
+<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> having &quot;month&quot; as the index.</p>
+</dd>
+<dt>month-year</dt><dd><p>computed on a month-by-year basis, producing the results for every month of the
+simulation, with the resulting <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> having &quot;year&quot; and &quot;month&quot; as the index.</p>
+</dd>
+</dl>
+</section>
+<section id="by">
+<h3><code class="docutils literal notranslate"><span class="pre">by</span></code><a class="headerlink" href="#by" title="Link to this heading">#</a></h3>
+<dl class="simple myst">
+<dt>windfarm</dt><dd><p>Aggregated across all turbines, with the resulting <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> having only
+&quot;windfarm&quot; as a column</p>
+</dd>
+<dt>turbine</dt><dd><p>Computed for each turbine, with the resulting <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> having a column for each
+turbine</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="availability">
+<span id="metrics-demo-availability"></span><h2>Availability<a class="headerlink" href="#availability" title="Link to this heading">#</a></h2>
+<p>There are two methods to produce availability, which have their own function calls:</p>
+<ul class="simple">
+<li><p>energy: actual power produced divided by potential power produced</p>
+<ul>
+<li><p><a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.production_based_availability" title="wombat.core.post_processor.Metrics.production_based_availability"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.production_based_availability()</span></code></a></p></li>
+</ul>
+</li>
+<li><p>time: The ratio of all non-zero hours to all hours in the simulation, or the
+proportion of the simulation where turbines are operating</p>
+<ul>
+<li><p><a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.time_based_availability" title="wombat.core.post_processor.Metrics.time_based_availability"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.time_based_availability()</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+<p>Here, we will go through the various input definitions to get time-based availability data as both methods use the same inputs, and provide outputs in the same format.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a> options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a> options: &quot;windfarm&quot; and
+&quot;turbine&quot;</p></li>
+</ul>
+<p>Below is a demonstration of the variations on <code class="docutils literal notranslate"><span class="pre">frequency</span></code> and <code class="docutils literal notranslate"><span class="pre">by</span></code> for
+<code class="docutils literal notranslate"><span class="pre">time_based_availability</span></code>.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">time_based_availability</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_beb0c" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_beb0c_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_beb0c_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_beb0c_row0_col0" class="data row0 col0" >0.97</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">production_based_availability</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_b2766" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_b2766_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_b2766_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_b2766_row0_col0" class="data row0 col0" >0.97</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Note that in the two above examples, that the values are equal. This is due to the fact
+that the example simulation does not have any operating reduction applied to failures,
+unless it's a catastrophic failure, so there is no expected difference.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demonstrate the by turbine granularity</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">time_based_availability</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;turbine&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_8e2e4" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_8e2e4_level0_col0" class="col_heading level0 col0" >S00T1</th>
+      <th id="T_8e2e4_level0_col1" class="col_heading level0 col1" >S00T2</th>
+      <th id="T_8e2e4_level0_col2" class="col_heading level0 col2" >S00T3</th>
+      <th id="T_8e2e4_level0_col3" class="col_heading level0 col3" >S00T4</th>
+      <th id="T_8e2e4_level0_col4" class="col_heading level0 col4" >S00T5</th>
+      <th id="T_8e2e4_level0_col5" class="col_heading level0 col5" >S00T6</th>
+      <th id="T_8e2e4_level0_col6" class="col_heading level0 col6" >S00T7</th>
+      <th id="T_8e2e4_level0_col7" class="col_heading level0 col7" >S00T8</th>
+      <th id="T_8e2e4_level0_col8" class="col_heading level0 col8" >S00T9</th>
+      <th id="T_8e2e4_level0_col9" class="col_heading level0 col9" >S00T10</th>
+      <th id="T_8e2e4_level0_col10" class="col_heading level0 col10" >S00T11</th>
+      <th id="T_8e2e4_level0_col11" class="col_heading level0 col11" >S00T12</th>
+      <th id="T_8e2e4_level0_col12" class="col_heading level0 col12" >S00T13</th>
+      <th id="T_8e2e4_level0_col13" class="col_heading level0 col13" >S00T14</th>
+      <th id="T_8e2e4_level0_col14" class="col_heading level0 col14" >S00T15</th>
+      <th id="T_8e2e4_level0_col15" class="col_heading level0 col15" >S00T16</th>
+      <th id="T_8e2e4_level0_col16" class="col_heading level0 col16" >S00T17</th>
+      <th id="T_8e2e4_level0_col17" class="col_heading level0 col17" >S00T18</th>
+      <th id="T_8e2e4_level0_col18" class="col_heading level0 col18" >S00T19</th>
+      <th id="T_8e2e4_level0_col19" class="col_heading level0 col19" >S00T20</th>
+      <th id="T_8e2e4_level0_col20" class="col_heading level0 col20" >S00T21</th>
+      <th id="T_8e2e4_level0_col21" class="col_heading level0 col21" >S00T22</th>
+      <th id="T_8e2e4_level0_col22" class="col_heading level0 col22" >S00T23</th>
+      <th id="T_8e2e4_level0_col23" class="col_heading level0 col23" >S00T24</th>
+      <th id="T_8e2e4_level0_col24" class="col_heading level0 col24" >S00T25</th>
+      <th id="T_8e2e4_level0_col25" class="col_heading level0 col25" >S00T26</th>
+      <th id="T_8e2e4_level0_col26" class="col_heading level0 col26" >S00T27</th>
+      <th id="T_8e2e4_level0_col27" class="col_heading level0 col27" >S00T28</th>
+      <th id="T_8e2e4_level0_col28" class="col_heading level0 col28" >S00T29</th>
+      <th id="T_8e2e4_level0_col29" class="col_heading level0 col29" >S00T30</th>
+      <th id="T_8e2e4_level0_col30" class="col_heading level0 col30" >S00T31</th>
+      <th id="T_8e2e4_level0_col31" class="col_heading level0 col31" >S00T32</th>
+      <th id="T_8e2e4_level0_col32" class="col_heading level0 col32" >S00T33</th>
+      <th id="T_8e2e4_level0_col33" class="col_heading level0 col33" >S00T34</th>
+      <th id="T_8e2e4_level0_col34" class="col_heading level0 col34" >S00T35</th>
+      <th id="T_8e2e4_level0_col35" class="col_heading level0 col35" >S00T36</th>
+      <th id="T_8e2e4_level0_col36" class="col_heading level0 col36" >S00T37</th>
+      <th id="T_8e2e4_level0_col37" class="col_heading level0 col37" >S00T38</th>
+      <th id="T_8e2e4_level0_col38" class="col_heading level0 col38" >S00T39</th>
+      <th id="T_8e2e4_level0_col39" class="col_heading level0 col39" >S00T40</th>
+      <th id="T_8e2e4_level0_col40" class="col_heading level0 col40" >S00T41</th>
+      <th id="T_8e2e4_level0_col41" class="col_heading level0 col41" >S00T42</th>
+      <th id="T_8e2e4_level0_col42" class="col_heading level0 col42" >S00T43</th>
+      <th id="T_8e2e4_level0_col43" class="col_heading level0 col43" >S00T44</th>
+      <th id="T_8e2e4_level0_col44" class="col_heading level0 col44" >S00T45</th>
+      <th id="T_8e2e4_level0_col45" class="col_heading level0 col45" >S00T46</th>
+      <th id="T_8e2e4_level0_col46" class="col_heading level0 col46" >S00T47</th>
+      <th id="T_8e2e4_level0_col47" class="col_heading level0 col47" >S00T48</th>
+      <th id="T_8e2e4_level0_col48" class="col_heading level0 col48" >S00T49</th>
+      <th id="T_8e2e4_level0_col49" class="col_heading level0 col49" >S00T50</th>
+      <th id="T_8e2e4_level0_col50" class="col_heading level0 col50" >S00T51</th>
+      <th id="T_8e2e4_level0_col51" class="col_heading level0 col51" >S00T52</th>
+      <th id="T_8e2e4_level0_col52" class="col_heading level0 col52" >S00T53</th>
+      <th id="T_8e2e4_level0_col53" class="col_heading level0 col53" >S00T54</th>
+      <th id="T_8e2e4_level0_col54" class="col_heading level0 col54" >S00T55</th>
+      <th id="T_8e2e4_level0_col55" class="col_heading level0 col55" >S00T56</th>
+      <th id="T_8e2e4_level0_col56" class="col_heading level0 col56" >S00T57</th>
+      <th id="T_8e2e4_level0_col57" class="col_heading level0 col57" >S00T58</th>
+      <th id="T_8e2e4_level0_col58" class="col_heading level0 col58" >S00T59</th>
+      <th id="T_8e2e4_level0_col59" class="col_heading level0 col59" >S00T60</th>
+      <th id="T_8e2e4_level0_col60" class="col_heading level0 col60" >S00T61</th>
+      <th id="T_8e2e4_level0_col61" class="col_heading level0 col61" >S00T62</th>
+      <th id="T_8e2e4_level0_col62" class="col_heading level0 col62" >S00T63</th>
+      <th id="T_8e2e4_level0_col63" class="col_heading level0 col63" >S00T64</th>
+      <th id="T_8e2e4_level0_col64" class="col_heading level0 col64" >S00T65</th>
+      <th id="T_8e2e4_level0_col65" class="col_heading level0 col65" >S00T66</th>
+      <th id="T_8e2e4_level0_col66" class="col_heading level0 col66" >S00T67</th>
+      <th id="T_8e2e4_level0_col67" class="col_heading level0 col67" >S00T68</th>
+      <th id="T_8e2e4_level0_col68" class="col_heading level0 col68" >S00T69</th>
+      <th id="T_8e2e4_level0_col69" class="col_heading level0 col69" >S00T70</th>
+      <th id="T_8e2e4_level0_col70" class="col_heading level0 col70" >S00T71</th>
+      <th id="T_8e2e4_level0_col71" class="col_heading level0 col71" >S00T72</th>
+      <th id="T_8e2e4_level0_col72" class="col_heading level0 col72" >S00T73</th>
+      <th id="T_8e2e4_level0_col73" class="col_heading level0 col73" >S00T74</th>
+      <th id="T_8e2e4_level0_col74" class="col_heading level0 col74" >S00T75</th>
+      <th id="T_8e2e4_level0_col75" class="col_heading level0 col75" >S00T76</th>
+      <th id="T_8e2e4_level0_col76" class="col_heading level0 col76" >S00T77</th>
+      <th id="T_8e2e4_level0_col77" class="col_heading level0 col77" >S00T78</th>
+      <th id="T_8e2e4_level0_col78" class="col_heading level0 col78" >S00T79</th>
+      <th id="T_8e2e4_level0_col79" class="col_heading level0 col79" >S00T80</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_8e2e4_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_8e2e4_row0_col0" class="data row0 col0" >0.94</td>
+      <td id="T_8e2e4_row0_col1" class="data row0 col1" >0.95</td>
+      <td id="T_8e2e4_row0_col2" class="data row0 col2" >0.97</td>
+      <td id="T_8e2e4_row0_col3" class="data row0 col3" >0.96</td>
+      <td id="T_8e2e4_row0_col4" class="data row0 col4" >0.98</td>
+      <td id="T_8e2e4_row0_col5" class="data row0 col5" >0.96</td>
+      <td id="T_8e2e4_row0_col6" class="data row0 col6" >0.97</td>
+      <td id="T_8e2e4_row0_col7" class="data row0 col7" >0.98</td>
+      <td id="T_8e2e4_row0_col8" class="data row0 col8" >0.98</td>
+      <td id="T_8e2e4_row0_col9" class="data row0 col9" >0.97</td>
+      <td id="T_8e2e4_row0_col10" class="data row0 col10" >0.97</td>
+      <td id="T_8e2e4_row0_col11" class="data row0 col11" >0.97</td>
+      <td id="T_8e2e4_row0_col12" class="data row0 col12" >0.98</td>
+      <td id="T_8e2e4_row0_col13" class="data row0 col13" >0.97</td>
+      <td id="T_8e2e4_row0_col14" class="data row0 col14" >0.98</td>
+      <td id="T_8e2e4_row0_col15" class="data row0 col15" >0.96</td>
+      <td id="T_8e2e4_row0_col16" class="data row0 col16" >0.97</td>
+      <td id="T_8e2e4_row0_col17" class="data row0 col17" >0.98</td>
+      <td id="T_8e2e4_row0_col18" class="data row0 col18" >0.98</td>
+      <td id="T_8e2e4_row0_col19" class="data row0 col19" >0.97</td>
+      <td id="T_8e2e4_row0_col20" class="data row0 col20" >0.96</td>
+      <td id="T_8e2e4_row0_col21" class="data row0 col21" >0.97</td>
+      <td id="T_8e2e4_row0_col22" class="data row0 col22" >0.95</td>
+      <td id="T_8e2e4_row0_col23" class="data row0 col23" >0.97</td>
+      <td id="T_8e2e4_row0_col24" class="data row0 col24" >0.97</td>
+      <td id="T_8e2e4_row0_col25" class="data row0 col25" >0.98</td>
+      <td id="T_8e2e4_row0_col26" class="data row0 col26" >0.92</td>
+      <td id="T_8e2e4_row0_col27" class="data row0 col27" >0.97</td>
+      <td id="T_8e2e4_row0_col28" class="data row0 col28" >0.98</td>
+      <td id="T_8e2e4_row0_col29" class="data row0 col29" >0.97</td>
+      <td id="T_8e2e4_row0_col30" class="data row0 col30" >0.97</td>
+      <td id="T_8e2e4_row0_col31" class="data row0 col31" >0.98</td>
+      <td id="T_8e2e4_row0_col32" class="data row0 col32" >0.96</td>
+      <td id="T_8e2e4_row0_col33" class="data row0 col33" >0.97</td>
+      <td id="T_8e2e4_row0_col34" class="data row0 col34" >0.98</td>
+      <td id="T_8e2e4_row0_col35" class="data row0 col35" >0.98</td>
+      <td id="T_8e2e4_row0_col36" class="data row0 col36" >0.97</td>
+      <td id="T_8e2e4_row0_col37" class="data row0 col37" >0.96</td>
+      <td id="T_8e2e4_row0_col38" class="data row0 col38" >0.97</td>
+      <td id="T_8e2e4_row0_col39" class="data row0 col39" >0.95</td>
+      <td id="T_8e2e4_row0_col40" class="data row0 col40" >0.93</td>
+      <td id="T_8e2e4_row0_col41" class="data row0 col41" >0.98</td>
+      <td id="T_8e2e4_row0_col42" class="data row0 col42" >0.95</td>
+      <td id="T_8e2e4_row0_col43" class="data row0 col43" >0.97</td>
+      <td id="T_8e2e4_row0_col44" class="data row0 col44" >0.95</td>
+      <td id="T_8e2e4_row0_col45" class="data row0 col45" >0.95</td>
+      <td id="T_8e2e4_row0_col46" class="data row0 col46" >0.97</td>
+      <td id="T_8e2e4_row0_col47" class="data row0 col47" >0.97</td>
+      <td id="T_8e2e4_row0_col48" class="data row0 col48" >0.96</td>
+      <td id="T_8e2e4_row0_col49" class="data row0 col49" >0.96</td>
+      <td id="T_8e2e4_row0_col50" class="data row0 col50" >0.97</td>
+      <td id="T_8e2e4_row0_col51" class="data row0 col51" >0.98</td>
+      <td id="T_8e2e4_row0_col52" class="data row0 col52" >0.95</td>
+      <td id="T_8e2e4_row0_col53" class="data row0 col53" >0.97</td>
+      <td id="T_8e2e4_row0_col54" class="data row0 col54" >0.98</td>
+      <td id="T_8e2e4_row0_col55" class="data row0 col55" >0.95</td>
+      <td id="T_8e2e4_row0_col56" class="data row0 col56" >0.98</td>
+      <td id="T_8e2e4_row0_col57" class="data row0 col57" >0.97</td>
+      <td id="T_8e2e4_row0_col58" class="data row0 col58" >0.97</td>
+      <td id="T_8e2e4_row0_col59" class="data row0 col59" >0.94</td>
+      <td id="T_8e2e4_row0_col60" class="data row0 col60" >0.98</td>
+      <td id="T_8e2e4_row0_col61" class="data row0 col61" >0.97</td>
+      <td id="T_8e2e4_row0_col62" class="data row0 col62" >0.95</td>
+      <td id="T_8e2e4_row0_col63" class="data row0 col63" >0.98</td>
+      <td id="T_8e2e4_row0_col64" class="data row0 col64" >0.94</td>
+      <td id="T_8e2e4_row0_col65" class="data row0 col65" >0.97</td>
+      <td id="T_8e2e4_row0_col66" class="data row0 col66" >0.97</td>
+      <td id="T_8e2e4_row0_col67" class="data row0 col67" >0.97</td>
+      <td id="T_8e2e4_row0_col68" class="data row0 col68" >0.98</td>
+      <td id="T_8e2e4_row0_col69" class="data row0 col69" >0.97</td>
+      <td id="T_8e2e4_row0_col70" class="data row0 col70" >0.98</td>
+      <td id="T_8e2e4_row0_col71" class="data row0 col71" >0.98</td>
+      <td id="T_8e2e4_row0_col72" class="data row0 col72" >0.94</td>
+      <td id="T_8e2e4_row0_col73" class="data row0 col73" >0.97</td>
+      <td id="T_8e2e4_row0_col74" class="data row0 col74" >0.97</td>
+      <td id="T_8e2e4_row0_col75" class="data row0 col75" >0.96</td>
+      <td id="T_8e2e4_row0_col76" class="data row0 col76" >0.95</td>
+      <td id="T_8e2e4_row0_col77" class="data row0 col77" >0.97</td>
+      <td id="T_8e2e4_row0_col78" class="data row0 col78" >0.97</td>
+      <td id="T_8e2e4_row0_col79" class="data row0 col79" >0.97</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demonstrate the annualized outputs</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">time_based_availability</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;annual&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_58e2f" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_58e2f_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >year</th>
+      <th class="blank col0" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_58e2f_level0_row0" class="row_heading level0 row0" >2003</th>
+      <td id="T_58e2f_row0_col0" class="data row0 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row1" class="row_heading level0 row1" >2004</th>
+      <td id="T_58e2f_row1_col0" class="data row1 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row2" class="row_heading level0 row2" >2005</th>
+      <td id="T_58e2f_row2_col0" class="data row2 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row3" class="row_heading level0 row3" >2006</th>
+      <td id="T_58e2f_row3_col0" class="data row3 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row4" class="row_heading level0 row4" >2007</th>
+      <td id="T_58e2f_row4_col0" class="data row4 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row5" class="row_heading level0 row5" >2008</th>
+      <td id="T_58e2f_row5_col0" class="data row5 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row6" class="row_heading level0 row6" >2009</th>
+      <td id="T_58e2f_row6_col0" class="data row6 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row7" class="row_heading level0 row7" >2010</th>
+      <td id="T_58e2f_row7_col0" class="data row7 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row8" class="row_heading level0 row8" >2011</th>
+      <td id="T_58e2f_row8_col0" class="data row8 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_58e2f_level0_row9" class="row_heading level0 row9" >2012</th>
+      <td id="T_58e2f_row9_col0" class="data row9 col0" >0.96</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demonstrate the month aggregations</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">time_based_availability</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_c6d81" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_c6d81_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >month</th>
+      <th class="blank col0" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_c6d81_level0_row0" class="row_heading level0 row0" >1</th>
+      <td id="T_c6d81_row0_col0" class="data row0 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row1" class="row_heading level0 row1" >2</th>
+      <td id="T_c6d81_row1_col0" class="data row1 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row2" class="row_heading level0 row2" >3</th>
+      <td id="T_c6d81_row2_col0" class="data row2 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row3" class="row_heading level0 row3" >4</th>
+      <td id="T_c6d81_row3_col0" class="data row3 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row4" class="row_heading level0 row4" >5</th>
+      <td id="T_c6d81_row4_col0" class="data row4 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row5" class="row_heading level0 row5" >6</th>
+      <td id="T_c6d81_row5_col0" class="data row5 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row6" class="row_heading level0 row6" >7</th>
+      <td id="T_c6d81_row6_col0" class="data row6 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row7" class="row_heading level0 row7" >8</th>
+      <td id="T_c6d81_row7_col0" class="data row7 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row8" class="row_heading level0 row8" >9</th>
+      <td id="T_c6d81_row8_col0" class="data row8 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row9" class="row_heading level0 row9" >10</th>
+      <td id="T_c6d81_row9_col0" class="data row9 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row10" class="row_heading level0 row10" >11</th>
+      <td id="T_c6d81_row10_col0" class="data row10 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_c6d81_level0_row11" class="row_heading level0 row11" >12</th>
+      <td id="T_c6d81_row11_col0" class="data row11 col0" >0.97</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demonstrate the granular monthly reporting</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">time_based_availability</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;month-year&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_2581c" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank" >&nbsp;</th>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_2581c_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >year</th>
+      <th class="index_name level1" >month</th>
+      <th class="blank col0" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_2581c_level0_row0" class="row_heading level0 row0" rowspan="12">2003</th>
+      <th id="T_2581c_level1_row0" class="row_heading level1 row0" >1</th>
+      <td id="T_2581c_row0_col0" class="data row0 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row1" class="row_heading level1 row1" >2</th>
+      <td id="T_2581c_row1_col0" class="data row1 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row2" class="row_heading level1 row2" >3</th>
+      <td id="T_2581c_row2_col0" class="data row2 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row3" class="row_heading level1 row3" >4</th>
+      <td id="T_2581c_row3_col0" class="data row3 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row4" class="row_heading level1 row4" >5</th>
+      <td id="T_2581c_row4_col0" class="data row4 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row5" class="row_heading level1 row5" >6</th>
+      <td id="T_2581c_row5_col0" class="data row5 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row6" class="row_heading level1 row6" >7</th>
+      <td id="T_2581c_row6_col0" class="data row6 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row7" class="row_heading level1 row7" >8</th>
+      <td id="T_2581c_row7_col0" class="data row7 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row8" class="row_heading level1 row8" >9</th>
+      <td id="T_2581c_row8_col0" class="data row8 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row9" class="row_heading level1 row9" >10</th>
+      <td id="T_2581c_row9_col0" class="data row9 col0" >0.98</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row10" class="row_heading level1 row10" >11</th>
+      <td id="T_2581c_row10_col0" class="data row10 col0" >0.99</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row11" class="row_heading level1 row11" >12</th>
+      <td id="T_2581c_row11_col0" class="data row11 col0" >0.98</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row12" class="row_heading level0 row12" rowspan="12">2004</th>
+      <th id="T_2581c_level1_row12" class="row_heading level1 row12" >1</th>
+      <td id="T_2581c_row12_col0" class="data row12 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row13" class="row_heading level1 row13" >2</th>
+      <td id="T_2581c_row13_col0" class="data row13 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row14" class="row_heading level1 row14" >3</th>
+      <td id="T_2581c_row14_col0" class="data row14 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row15" class="row_heading level1 row15" >4</th>
+      <td id="T_2581c_row15_col0" class="data row15 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row16" class="row_heading level1 row16" >5</th>
+      <td id="T_2581c_row16_col0" class="data row16 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row17" class="row_heading level1 row17" >6</th>
+      <td id="T_2581c_row17_col0" class="data row17 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row18" class="row_heading level1 row18" >7</th>
+      <td id="T_2581c_row18_col0" class="data row18 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row19" class="row_heading level1 row19" >8</th>
+      <td id="T_2581c_row19_col0" class="data row19 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row20" class="row_heading level1 row20" >9</th>
+      <td id="T_2581c_row20_col0" class="data row20 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row21" class="row_heading level1 row21" >10</th>
+      <td id="T_2581c_row21_col0" class="data row21 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row22" class="row_heading level1 row22" >11</th>
+      <td id="T_2581c_row22_col0" class="data row22 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row23" class="row_heading level1 row23" >12</th>
+      <td id="T_2581c_row23_col0" class="data row23 col0" >0.98</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row24" class="row_heading level0 row24" rowspan="12">2005</th>
+      <th id="T_2581c_level1_row24" class="row_heading level1 row24" >1</th>
+      <td id="T_2581c_row24_col0" class="data row24 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row25" class="row_heading level1 row25" >2</th>
+      <td id="T_2581c_row25_col0" class="data row25 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row26" class="row_heading level1 row26" >3</th>
+      <td id="T_2581c_row26_col0" class="data row26 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row27" class="row_heading level1 row27" >4</th>
+      <td id="T_2581c_row27_col0" class="data row27 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row28" class="row_heading level1 row28" >5</th>
+      <td id="T_2581c_row28_col0" class="data row28 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row29" class="row_heading level1 row29" >6</th>
+      <td id="T_2581c_row29_col0" class="data row29 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row30" class="row_heading level1 row30" >7</th>
+      <td id="T_2581c_row30_col0" class="data row30 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row31" class="row_heading level1 row31" >8</th>
+      <td id="T_2581c_row31_col0" class="data row31 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row32" class="row_heading level1 row32" >9</th>
+      <td id="T_2581c_row32_col0" class="data row32 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row33" class="row_heading level1 row33" >10</th>
+      <td id="T_2581c_row33_col0" class="data row33 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row34" class="row_heading level1 row34" >11</th>
+      <td id="T_2581c_row34_col0" class="data row34 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row35" class="row_heading level1 row35" >12</th>
+      <td id="T_2581c_row35_col0" class="data row35 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row36" class="row_heading level0 row36" rowspan="12">2006</th>
+      <th id="T_2581c_level1_row36" class="row_heading level1 row36" >1</th>
+      <td id="T_2581c_row36_col0" class="data row36 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row37" class="row_heading level1 row37" >2</th>
+      <td id="T_2581c_row37_col0" class="data row37 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row38" class="row_heading level1 row38" >3</th>
+      <td id="T_2581c_row38_col0" class="data row38 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row39" class="row_heading level1 row39" >4</th>
+      <td id="T_2581c_row39_col0" class="data row39 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row40" class="row_heading level1 row40" >5</th>
+      <td id="T_2581c_row40_col0" class="data row40 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row41" class="row_heading level1 row41" >6</th>
+      <td id="T_2581c_row41_col0" class="data row41 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row42" class="row_heading level1 row42" >7</th>
+      <td id="T_2581c_row42_col0" class="data row42 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row43" class="row_heading level1 row43" >8</th>
+      <td id="T_2581c_row43_col0" class="data row43 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row44" class="row_heading level1 row44" >9</th>
+      <td id="T_2581c_row44_col0" class="data row44 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row45" class="row_heading level1 row45" >10</th>
+      <td id="T_2581c_row45_col0" class="data row45 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row46" class="row_heading level1 row46" >11</th>
+      <td id="T_2581c_row46_col0" class="data row46 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row47" class="row_heading level1 row47" >12</th>
+      <td id="T_2581c_row47_col0" class="data row47 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row48" class="row_heading level0 row48" rowspan="12">2007</th>
+      <th id="T_2581c_level1_row48" class="row_heading level1 row48" >1</th>
+      <td id="T_2581c_row48_col0" class="data row48 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row49" class="row_heading level1 row49" >2</th>
+      <td id="T_2581c_row49_col0" class="data row49 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row50" class="row_heading level1 row50" >3</th>
+      <td id="T_2581c_row50_col0" class="data row50 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row51" class="row_heading level1 row51" >4</th>
+      <td id="T_2581c_row51_col0" class="data row51 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row52" class="row_heading level1 row52" >5</th>
+      <td id="T_2581c_row52_col0" class="data row52 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row53" class="row_heading level1 row53" >6</th>
+      <td id="T_2581c_row53_col0" class="data row53 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row54" class="row_heading level1 row54" >7</th>
+      <td id="T_2581c_row54_col0" class="data row54 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row55" class="row_heading level1 row55" >8</th>
+      <td id="T_2581c_row55_col0" class="data row55 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row56" class="row_heading level1 row56" >9</th>
+      <td id="T_2581c_row56_col0" class="data row56 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row57" class="row_heading level1 row57" >10</th>
+      <td id="T_2581c_row57_col0" class="data row57 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row58" class="row_heading level1 row58" >11</th>
+      <td id="T_2581c_row58_col0" class="data row58 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row59" class="row_heading level1 row59" >12</th>
+      <td id="T_2581c_row59_col0" class="data row59 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row60" class="row_heading level0 row60" rowspan="12">2008</th>
+      <th id="T_2581c_level1_row60" class="row_heading level1 row60" >1</th>
+      <td id="T_2581c_row60_col0" class="data row60 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row61" class="row_heading level1 row61" >2</th>
+      <td id="T_2581c_row61_col0" class="data row61 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row62" class="row_heading level1 row62" >3</th>
+      <td id="T_2581c_row62_col0" class="data row62 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row63" class="row_heading level1 row63" >4</th>
+      <td id="T_2581c_row63_col0" class="data row63 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row64" class="row_heading level1 row64" >5</th>
+      <td id="T_2581c_row64_col0" class="data row64 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row65" class="row_heading level1 row65" >6</th>
+      <td id="T_2581c_row65_col0" class="data row65 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row66" class="row_heading level1 row66" >7</th>
+      <td id="T_2581c_row66_col0" class="data row66 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row67" class="row_heading level1 row67" >8</th>
+      <td id="T_2581c_row67_col0" class="data row67 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row68" class="row_heading level1 row68" >9</th>
+      <td id="T_2581c_row68_col0" class="data row68 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row69" class="row_heading level1 row69" >10</th>
+      <td id="T_2581c_row69_col0" class="data row69 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row70" class="row_heading level1 row70" >11</th>
+      <td id="T_2581c_row70_col0" class="data row70 col0" >0.95</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row71" class="row_heading level1 row71" >12</th>
+      <td id="T_2581c_row71_col0" class="data row71 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row72" class="row_heading level0 row72" rowspan="12">2009</th>
+      <th id="T_2581c_level1_row72" class="row_heading level1 row72" >1</th>
+      <td id="T_2581c_row72_col0" class="data row72 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row73" class="row_heading level1 row73" >2</th>
+      <td id="T_2581c_row73_col0" class="data row73 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row74" class="row_heading level1 row74" >3</th>
+      <td id="T_2581c_row74_col0" class="data row74 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row75" class="row_heading level1 row75" >4</th>
+      <td id="T_2581c_row75_col0" class="data row75 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row76" class="row_heading level1 row76" >5</th>
+      <td id="T_2581c_row76_col0" class="data row76 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row77" class="row_heading level1 row77" >6</th>
+      <td id="T_2581c_row77_col0" class="data row77 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row78" class="row_heading level1 row78" >7</th>
+      <td id="T_2581c_row78_col0" class="data row78 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row79" class="row_heading level1 row79" >8</th>
+      <td id="T_2581c_row79_col0" class="data row79 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row80" class="row_heading level1 row80" >9</th>
+      <td id="T_2581c_row80_col0" class="data row80 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row81" class="row_heading level1 row81" >10</th>
+      <td id="T_2581c_row81_col0" class="data row81 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row82" class="row_heading level1 row82" >11</th>
+      <td id="T_2581c_row82_col0" class="data row82 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row83" class="row_heading level1 row83" >12</th>
+      <td id="T_2581c_row83_col0" class="data row83 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row84" class="row_heading level0 row84" rowspan="12">2010</th>
+      <th id="T_2581c_level1_row84" class="row_heading level1 row84" >1</th>
+      <td id="T_2581c_row84_col0" class="data row84 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row85" class="row_heading level1 row85" >2</th>
+      <td id="T_2581c_row85_col0" class="data row85 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row86" class="row_heading level1 row86" >3</th>
+      <td id="T_2581c_row86_col0" class="data row86 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row87" class="row_heading level1 row87" >4</th>
+      <td id="T_2581c_row87_col0" class="data row87 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row88" class="row_heading level1 row88" >5</th>
+      <td id="T_2581c_row88_col0" class="data row88 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row89" class="row_heading level1 row89" >6</th>
+      <td id="T_2581c_row89_col0" class="data row89 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row90" class="row_heading level1 row90" >7</th>
+      <td id="T_2581c_row90_col0" class="data row90 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row91" class="row_heading level1 row91" >8</th>
+      <td id="T_2581c_row91_col0" class="data row91 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row92" class="row_heading level1 row92" >9</th>
+      <td id="T_2581c_row92_col0" class="data row92 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row93" class="row_heading level1 row93" >10</th>
+      <td id="T_2581c_row93_col0" class="data row93 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row94" class="row_heading level1 row94" >11</th>
+      <td id="T_2581c_row94_col0" class="data row94 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row95" class="row_heading level1 row95" >12</th>
+      <td id="T_2581c_row95_col0" class="data row95 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row96" class="row_heading level0 row96" rowspan="12">2011</th>
+      <th id="T_2581c_level1_row96" class="row_heading level1 row96" >1</th>
+      <td id="T_2581c_row96_col0" class="data row96 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row97" class="row_heading level1 row97" >2</th>
+      <td id="T_2581c_row97_col0" class="data row97 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row98" class="row_heading level1 row98" >3</th>
+      <td id="T_2581c_row98_col0" class="data row98 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row99" class="row_heading level1 row99" >4</th>
+      <td id="T_2581c_row99_col0" class="data row99 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row100" class="row_heading level1 row100" >5</th>
+      <td id="T_2581c_row100_col0" class="data row100 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row101" class="row_heading level1 row101" >6</th>
+      <td id="T_2581c_row101_col0" class="data row101 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row102" class="row_heading level1 row102" >7</th>
+      <td id="T_2581c_row102_col0" class="data row102 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row103" class="row_heading level1 row103" >8</th>
+      <td id="T_2581c_row103_col0" class="data row103 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row104" class="row_heading level1 row104" >9</th>
+      <td id="T_2581c_row104_col0" class="data row104 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row105" class="row_heading level1 row105" >10</th>
+      <td id="T_2581c_row105_col0" class="data row105 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row106" class="row_heading level1 row106" >11</th>
+      <td id="T_2581c_row106_col0" class="data row106 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row107" class="row_heading level1 row107" >12</th>
+      <td id="T_2581c_row107_col0" class="data row107 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level0_row108" class="row_heading level0 row108" rowspan="12">2012</th>
+      <th id="T_2581c_level1_row108" class="row_heading level1 row108" >1</th>
+      <td id="T_2581c_row108_col0" class="data row108 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row109" class="row_heading level1 row109" >2</th>
+      <td id="T_2581c_row109_col0" class="data row109 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row110" class="row_heading level1 row110" >3</th>
+      <td id="T_2581c_row110_col0" class="data row110 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row111" class="row_heading level1 row111" >4</th>
+      <td id="T_2581c_row111_col0" class="data row111 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row112" class="row_heading level1 row112" >5</th>
+      <td id="T_2581c_row112_col0" class="data row112 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row113" class="row_heading level1 row113" >6</th>
+      <td id="T_2581c_row113_col0" class="data row113 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row114" class="row_heading level1 row114" >7</th>
+      <td id="T_2581c_row114_col0" class="data row114 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row115" class="row_heading level1 row115" >8</th>
+      <td id="T_2581c_row115_col0" class="data row115 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row116" class="row_heading level1 row116" >9</th>
+      <td id="T_2581c_row116_col0" class="data row116 col0" >0.96</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row117" class="row_heading level1 row117" >10</th>
+      <td id="T_2581c_row117_col0" class="data row117 col0" >0.95</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row118" class="row_heading level1 row118" >11</th>
+      <td id="T_2581c_row118_col0" class="data row118 col0" >0.97</td>
+    </tr>
+    <tr>
+      <th id="T_2581c_level1_row119" class="row_heading level1 row119" >12</th>
+      <td id="T_2581c_row119_col0" class="data row119 col0" >0.97</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="capacity-factor">
+<span id="metrics-demo-cf"></span><h2>Capacity Factor<a class="headerlink" href="#capacity-factor" title="Link to this heading">#</a></h2>
+<p>The capacity factor is the ratio of actual (net) or potential (gross) energy production
+divided by the project's capacity. For further documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.capacity_factor" title="wombat.core.post_processor.Metrics.capacity_factor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.capacity_factor()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">which</span></code></p>
+<ul>
+<li><p>&quot;net&quot;: net capacity factor, actual production divided by the plant capacity</p></li>
+<li><p>&quot;gross&quot;: gross capacity factor, potential production divided by the plant capacity</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;windfarm&quot; and
+&quot;turbine&quot;</p></li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">net_cf</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">capacity_factor</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;net&quot;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">gross_cf</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">capacity_factor</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;gross&quot;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Net capacity factor: </span><span class="si">{</span><span class="n">net_cf</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gross capacity factor: </span><span class="si">{</span><span class="n">gross_cf</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Net capacity factor: 46.02%
+Gross capacity factor: 47.67%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="task-completion-rate">
+<span id="metrics-demo-task-completion"></span><h2>Task Completion Rate<a class="headerlink" href="#task-completion-rate" title="Link to this heading">#</a></h2>
+<p>The task completion rate is the ratio of tasks completed aggregated to the desired
+<code class="docutils literal notranslate"><span class="pre">frequency</span></code>. It is possible to have a &gt;100% completion rate if all maintenance and
+failure requests submitted in a time period were completed in addition to those that
+went unfinished in prior time periods. For further documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.task_completion_rate" title="wombat.core.post_processor.Metrics.task_completion_rate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.task_completion_rate()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">which</span></code></p>
+<ul>
+<li><p>&quot;scheduled&quot;: scheduled maintenance only (classified as maintenance tasks in inputs)</p></li>
+<li><p>&quot;unscheduled&quot;: unscheduled maintenance only (classified as failure events in inputs)</p></li>
+<li><p>&quot;both&quot;: Combined completion rate for all tasks</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scheduled</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">task_completion_rate</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;scheduled&quot;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">unscheduled</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">task_completion_rate</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;unscheduled&quot;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">combined</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">task_completion_rate</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Scheduled Task Completion Rate: </span><span class="si">{</span><span class="n">scheduled</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unscheduled Task Completion Rate: </span><span class="si">{</span><span class="n">unscheduled</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Overall Task Completion Rate: </span><span class="si">{</span><span class="n">combined</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Scheduled Task Completion Rate: 67.98%
+Unscheduled Task Completion Rate: 99.89%
+    Overall Task Completion Rate: 97.40%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="equipment-costs">
+<span id="metrics-demo-equipment-costs"></span><h2>Equipment Costs<a class="headerlink" href="#equipment-costs" title="Link to this heading">#</a></h2>
+<p>Sum of the costs associated with a simulation's servicing equipment, which excludes
+materials, downtime, etc. For further documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.equipment_costs" title="wombat.core.post_processor.Metrics.equipment_costs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.equipment_costs()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_equipment</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Aggregates all equipment into a single cost</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Computes for each unit of servicing equipment</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project total at the whole wind farm level</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">equipment_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_equipment</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_1860e" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_1860e_level0_col0" class="col_heading level0 col0" >equipment_cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_1860e_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_1860e_row0_col0" class="data row0 col0" >123,427,472.83</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals at servicing equipment level</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">equipment_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_equipment</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10/site-packages/wombat/core/post_processor.py:731: FutureWarning: &lt;class &#39;pandas.core.arrays.string_.StringArray&#39;&gt;._reduce will require a `keepdims` parameter in the future
+  costs = costs.fillna(costs.max(axis=0)).T
+</pre></div>
+</div>
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_9cb4b" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_9cb4b_level0_col0" class="col_heading level0 col0" >Crew Transfer Vessel 1</th>
+      <th id="T_9cb4b_level0_col1" class="col_heading level0 col1" >Crew Transfer Vessel 2</th>
+      <th id="T_9cb4b_level0_col2" class="col_heading level0 col2" >Crew Transfer Vessel 3</th>
+      <th id="T_9cb4b_level0_col3" class="col_heading level0 col3" >Field Support Vessel</th>
+      <th id="T_9cb4b_level0_col4" class="col_heading level0 col4" >Heavy Lift Vessel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_9cb4b_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_9cb4b_row0_col0" class="data row0 col0" >6,390,497.04</td>
+      <td id="T_9cb4b_row0_col1" class="data row0 col1" >6,390,503.70</td>
+      <td id="T_9cb4b_row0_col2" class="data row0 col2" >6,390,499.95</td>
+      <td id="T_9cb4b_row0_col3" class="data row0 col3" >2,981,921.79</td>
+      <td id="T_9cb4b_row0_col4" class="data row0 col4" >101,274,050.35</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="service-equipment-utilization-rate">
+<span id="metrics-demo-utilization-rate"></span><h2>Service Equipment Utilization Rate<a class="headerlink" href="#service-equipment-utilization-rate" title="Link to this heading">#</a></h2>
+<p>Ratio of days when the servicing equipment is in use (not delayed for a whole day due to
+either weather or lack of repairs to be completed) to the number of days it's present in
+the simulation. For further documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.service_equipment_utilization" title="wombat.core.post_processor.Metrics.service_equipment_utilization"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.service_equipment_utilization()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;
+and &quot;annual&quot;</p></li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">service_equipment_utilization</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_9560a" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_9560a_level0_col0" class="col_heading level0 col0" >Crew Transfer Vessel 1</th>
+      <th id="T_9560a_level0_col1" class="col_heading level0 col1" >Crew Transfer Vessel 2</th>
+      <th id="T_9560a_level0_col2" class="col_heading level0 col2" >Crew Transfer Vessel 3</th>
+      <th id="T_9560a_level0_col3" class="col_heading level0 col3" >Field Support Vessel</th>
+      <th id="T_9560a_level0_col4" class="col_heading level0 col4" >Heavy Lift Vessel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_9560a_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_9560a_row0_col0" class="data row0 col0" >1.00</td>
+      <td id="T_9560a_row0_col1" class="data row0 col1" >1.00</td>
+      <td id="T_9560a_row0_col2" class="data row0 col2" >1.00</td>
+      <td id="T_9560a_row0_col3" class="data row0 col3" >0.93</td>
+      <td id="T_9560a_row0_col4" class="data row0 col4" >0.93</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="vessel-crew-hours-at-sea">
+<span id="metrics-demo-vessel-crew-hours"></span><h2>Vessel-Crew Hours at Sea<a class="headerlink" href="#vessel-crew-hours-at-sea" title="Link to this heading">#</a></h2>
+<p>The number of vessel hours or crew hours at sea for offshore wind power plant
+simulations. For further documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.vessel_crew_hours_at_sea" title="wombat.core.post_processor.Metrics.vessel_crew_hours_at_sea"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.vessel_crew_hours_at_sea()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_equipment</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Aggregates all equipment into a single cost</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Computes for each unit of servicing equipment</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vessel_crew_assumption</span></code>: A dictionary of vessel names
+(<code class="docutils literal notranslate"><span class="pre">ServiceEquipment.settings.name</span></code>, but also found at <code class="docutils literal notranslate"><span class="pre">Metrics.service_equipment_names</span></code>)
+and the number of crew onboard at any given time. The application of this assumption
+transforms the results from vessel hours at sea to crew hours at sea.</p></li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project total, not broken out by vessel</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">vessel_crew_hours_at_sea</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_equipment</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_300d3" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_300d3_level0_col0" class="col_heading level0 col0" >Total Crew Hours at Sea</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_300d3_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_300d3_row0_col0" class="data row0 col0" >162,354.27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Annual project totals, broken out by vessel</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">vessel_crew_hours_at_sea</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;annual&quot;</span><span class="p">,</span> <span class="n">by_equipment</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_e488d" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_e488d_level0_col0" class="col_heading level0 col0" >Total Crew Hours at Sea</th>
+      <th id="T_e488d_level0_col1" class="col_heading level0 col1" >Crew Transfer Vessel 1</th>
+      <th id="T_e488d_level0_col2" class="col_heading level0 col2" >Crew Transfer Vessel 2</th>
+      <th id="T_e488d_level0_col3" class="col_heading level0 col3" >Crew Transfer Vessel 3</th>
+      <th id="T_e488d_level0_col4" class="col_heading level0 col4" >Field Support Vessel</th>
+      <th id="T_e488d_level0_col5" class="col_heading level0 col5" >Heavy Lift Vessel</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >year</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+      <th class="blank col5" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_e488d_level0_row0" class="row_heading level0 row0" >2003</th>
+      <td id="T_e488d_row0_col0" class="data row0 col0" >8,478.97</td>
+      <td id="T_e488d_row0_col1" class="data row0 col1" >1,724.49</td>
+      <td id="T_e488d_row0_col2" class="data row0 col2" >1,865.73</td>
+      <td id="T_e488d_row0_col3" class="data row0 col3" >1,800.24</td>
+      <td id="T_e488d_row0_col4" class="data row0 col4" >1,257.00</td>
+      <td id="T_e488d_row0_col5" class="data row0 col5" >1,831.50</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row1" class="row_heading level0 row1" >2004</th>
+      <td id="T_e488d_row1_col0" class="data row1 col0" >18,211.24</td>
+      <td id="T_e488d_row1_col1" class="data row1 col1" >3,968.24</td>
+      <td id="T_e488d_row1_col2" class="data row1 col2" >4,034.95</td>
+      <td id="T_e488d_row1_col3" class="data row1 col3" >4,079.22</td>
+      <td id="T_e488d_row1_col4" class="data row1 col4" >675.00</td>
+      <td id="T_e488d_row1_col5" class="data row1 col5" >5,453.83</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row2" class="row_heading level0 row2" >2005</th>
+      <td id="T_e488d_row2_col0" class="data row2 col0" >14,599.89</td>
+      <td id="T_e488d_row2_col1" class="data row2 col1" >4,103.75</td>
+      <td id="T_e488d_row2_col2" class="data row2 col2" >4,105.22</td>
+      <td id="T_e488d_row2_col3" class="data row2 col3" >4,093.24</td>
+      <td id="T_e488d_row2_col4" class="data row2 col4" >0.00</td>
+      <td id="T_e488d_row2_col5" class="data row2 col5" >2,297.68</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row3" class="row_heading level0 row3" >2006</th>
+      <td id="T_e488d_row3_col0" class="data row3 col0" >14,870.92</td>
+      <td id="T_e488d_row3_col1" class="data row3 col1" >4,200.98</td>
+      <td id="T_e488d_row3_col2" class="data row3 col2" >4,181.99</td>
+      <td id="T_e488d_row3_col3" class="data row3 col3" >4,206.45</td>
+      <td id="T_e488d_row3_col4" class="data row3 col4" >646.00</td>
+      <td id="T_e488d_row3_col5" class="data row3 col5" >1,635.50</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row4" class="row_heading level0 row4" >2007</th>
+      <td id="T_e488d_row4_col0" class="data row4 col0" >17,012.87</td>
+      <td id="T_e488d_row4_col1" class="data row4 col1" >4,195.19</td>
+      <td id="T_e488d_row4_col2" class="data row4 col2" >4,186.96</td>
+      <td id="T_e488d_row4_col3" class="data row4 col3" >4,203.73</td>
+      <td id="T_e488d_row4_col4" class="data row4 col4" >648.00</td>
+      <td id="T_e488d_row4_col5" class="data row4 col5" >3,779.00</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row5" class="row_heading level0 row5" >2008</th>
+      <td id="T_e488d_row5_col0" class="data row5 col0" >19,645.46</td>
+      <td id="T_e488d_row5_col1" class="data row5 col1" >4,250.25</td>
+      <td id="T_e488d_row5_col2" class="data row5 col2" >4,264.70</td>
+      <td id="T_e488d_row5_col3" class="data row5 col3" >4,192.51</td>
+      <td id="T_e488d_row5_col4" class="data row5 col4" >1,222.00</td>
+      <td id="T_e488d_row5_col5" class="data row5 col5" >5,716.00</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row6" class="row_heading level0 row6" >2009</th>
+      <td id="T_e488d_row6_col0" class="data row6 col0" >17,281.67</td>
+      <td id="T_e488d_row6_col1" class="data row6 col1" >4,295.97</td>
+      <td id="T_e488d_row6_col2" class="data row6 col2" >4,265.25</td>
+      <td id="T_e488d_row6_col3" class="data row6 col3" >4,291.66</td>
+      <td id="T_e488d_row6_col4" class="data row6 col4" >518.05</td>
+      <td id="T_e488d_row6_col5" class="data row6 col5" >3,910.75</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row7" class="row_heading level0 row7" >2010</th>
+      <td id="T_e488d_row7_col0" class="data row7 col0" >16,896.87</td>
+      <td id="T_e488d_row7_col1" class="data row7 col1" >4,215.22</td>
+      <td id="T_e488d_row7_col2" class="data row7 col2" >4,133.47</td>
+      <td id="T_e488d_row7_col3" class="data row7 col3" >4,165.99</td>
+      <td id="T_e488d_row7_col4" class="data row7 col4" >82.95</td>
+      <td id="T_e488d_row7_col5" class="data row7 col5" >4,299.24</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row8" class="row_heading level0 row8" >2011</th>
+      <td id="T_e488d_row8_col0" class="data row8 col0" >17,862.94</td>
+      <td id="T_e488d_row8_col1" class="data row8 col1" >4,137.48</td>
+      <td id="T_e488d_row8_col2" class="data row8 col2" >4,161.98</td>
+      <td id="T_e488d_row8_col3" class="data row8 col3" >4,142.72</td>
+      <td id="T_e488d_row8_col4" class="data row8 col4" >1,105.00</td>
+      <td id="T_e488d_row8_col5" class="data row8 col5" >4,315.75</td>
+    </tr>
+    <tr>
+      <th id="T_e488d_level0_row9" class="row_heading level0 row9" >2012</th>
+      <td id="T_e488d_row9_col0" class="data row9 col0" >17,493.43</td>
+      <td id="T_e488d_row9_col1" class="data row9 col1" >4,214.25</td>
+      <td id="T_e488d_row9_col2" class="data row9 col2" >4,165.23</td>
+      <td id="T_e488d_row9_col3" class="data row9 col3" >4,223.70</td>
+      <td id="T_e488d_row9_col4" class="data row9 col4" >791.50</td>
+      <td id="T_e488d_row9_col5" class="data row9 col5" >4,098.75</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="number-of-tows">
+<span id="metrics-demo-n-tows"></span><h2>Number of Tows<a class="headerlink" href="#number-of-tows" title="Link to this heading">#</a></h2>
+<p>The number of tows performed during the simulation. If tow-to-port was not used in the
+simulation, a DataFrame with a single value of 0 will be returned. For further
+documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.number_of_tows" title="wombat.core.post_processor.Metrics.number_of_tows"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.number_of_tows()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_tug</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Computed for each tugboat (towing vessel)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Aggregates all the tugboats</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_direction</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Computed for each direction a tow was performed (to port or to site)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Aggregates to the total number of tows</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project Total</span>
+<span class="c1"># NOTE: This example has no towing, so it will return 0</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">number_of_tows</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_1808a" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_1808a_level0_col0" class="col_heading level0 col0" >total_tows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_1808a_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_1808a_row0_col0" class="data row0 col0" >0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="labor-costs">
+<span id="metrics-demo-labor-costs"></span><h2>Labor Costs<a class="headerlink" href="#labor-costs" title="Link to this heading">#</a></h2>
+<p>Sum of all labor costs associated with servicing equipment, excluding the labor defined
+in the fixed costs, which can be broken out by type. For further documentation, see the
+API docs here: <a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.labor_costs" title="wombat.core.post_processor.Metrics.labor_costs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.labor_costs()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_type</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Computed for each labor type (salary and hourly)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Aggregates all the labor costs</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project total at the whole wind farm level</span>
+<span class="n">total</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">labor_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_type</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Project total: $</span><span class="si">{</span><span class="n">total</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">metrics</span><span class="o">.</span><span class="n">project_capacity</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">/MW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Project total: $0.00/MW
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals for each type of labor</span>
+<span class="c1"># NOTE: this simulation relies on using a fixed labor cost, so this is still $0</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">labor_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_type</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_a8983" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_a8983_level0_col0" class="col_heading level0 col0" >hourly_labor_cost</th>
+      <th id="T_a8983_level0_col1" class="col_heading level0 col1" >salary_labor_cost</th>
+      <th id="T_a8983_level0_col2" class="col_heading level0 col2" >total_labor_cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a8983_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_a8983_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_a8983_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_a8983_row0_col2" class="data row0 col2" >0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="equipment-and-labor-costs">
+<span id="metrics-demo-equipment-labor-costs"></span><h2>Equipment and Labor Costs<a class="headerlink" href="#equipment-and-labor-costs" title="Link to this heading">#</a></h2>
+<p>Sum of all labor and servicing equipment costs, excluding the labor defined in the fixed
+costs, which can be broken out by each category. For further documentation, see the API
+docs here: <code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.equipment_labor_cost_breakdown()</span></code>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_category</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Computed for each unit servicing equipment and labor category</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Aggregated to the sum of all costs</p></li>
+</ul>
+</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">reason</span></code> definitions:</p>
+<ul class="simple">
+<li><p>Maintenance: routine maintenance, or events defined as a
+<a class="reference internal" href="../API/types.html#wombat.core.data_classes.Maintenance" title="wombat.core.data_classes.Maintenance"><code class="xref py py-class docutils literal notranslate"><span class="pre">wombat.core.data_classes.Maintenance</span></code></a></p></li>
+<li><p>Repair: unscheduled maintenance, ranging from inspections to replacements, or events
+defined as a <a class="reference internal" href="../API/types.html#wombat.core.data_classes.Failure" title="wombat.core.data_classes.Failure"><code class="xref py py-class docutils literal notranslate"><span class="pre">wombat.core.data_classes.Failure</span></code></a></p></li>
+<li><p>Mobilization: Cost of mobilizing servicing equipment</p></li>
+<li><p>Crew Transfer: Costs incurred while crew are transferring between a turbine or
+substation and the servicing equipment</p></li>
+<li><p>Site Travel: Costs incurred while transiting to/from the site and while at the site</p></li>
+<li><p>Weather Delay: Any delays caused by unsafe weather conditions</p></li>
+<li><p>No Requests: Equipment and labor is active, but there are no repairs or maintenance
+tasks to be completed</p></li>
+<li><p>Not in Shift: Any time outside the operating hours of the wind farm (or the
+servicing equipment's specific operating hours)</p></li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">equipment_labor_cost_breakdowns</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_de81d" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_de81d_level0_col0" class="col_heading level0 col0" >total_cost</th>
+      <th id="T_de81d_level0_col1" class="col_heading level0 col1" >total_hours</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >reason</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_de81d_level0_row0" class="row_heading level0 row0" >Maintenance</th>
+      <td id="T_de81d_row0_col0" class="data row0 col0" >2,200,843.75</td>
+      <td id="T_de81d_row0_col1" class="data row0 col1" >30,183.00</td>
+    </tr>
+    <tr>
+      <th id="T_de81d_level0_row1" class="row_heading level0 row1" >Repair</th>
+      <td id="T_de81d_row1_col0" class="data row1 col0" >36,391,793.40</td>
+      <td id="T_de81d_row1_col1" class="data row1 col1" >63,034.33</td>
+    </tr>
+    <tr>
+      <th id="T_de81d_level0_row2" class="row_heading level0 row2" >Crew Transfer</th>
+      <td id="T_de81d_row2_col0" class="data row2 col0" >1,234,583.33</td>
+      <td id="T_de81d_row2_col1" class="data row2 col1" >10,279.00</td>
+    </tr>
+    <tr>
+      <th id="T_de81d_level0_row3" class="row_heading level0 row3" >Site Travel</th>
+      <td id="T_de81d_row3_col0" class="data row3 col0" >0.00</td>
+      <td id="T_de81d_row3_col1" class="data row3 col1" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_de81d_level0_row4" class="row_heading level0 row4" >Mobilization</th>
+      <td id="T_de81d_row4_col0" class="data row4 col0" >9,500,000.00</td>
+      <td id="T_de81d_row4_col1" class="data row4 col1" >32,904.00</td>
+    </tr>
+    <tr>
+      <th id="T_de81d_level0_row5" class="row_heading level0 row5" >Weather Delay</th>
+      <td id="T_de81d_row5_col0" class="data row5 col0" >37,164,495.12</td>
+      <td id="T_de81d_row5_col1" class="data row5 col1" >36,940.25</td>
+    </tr>
+    <tr>
+      <th id="T_de81d_level0_row6" class="row_heading level0 row6" >No Requests</th>
+      <td id="T_de81d_row6_col0" class="data row6 col0" >27,649,439.17</td>
+      <td id="T_de81d_row6_col1" class="data row6 col1" >27,839.82</td>
+    </tr>
+    <tr>
+      <th id="T_de81d_level0_row7" class="row_heading level0 row7" >Not in Shift</th>
+      <td id="T_de81d_row7_col0" class="data row7 col0" >9,286,318.06</td>
+      <td id="T_de81d_row7_col1" class="data row7 col1" >116,957.16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals by each category</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">equipment_labor_cost_breakdowns</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_f725c" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_f725c_level0_col0" class="col_heading level0 col0" >hourly_labor_cost</th>
+      <th id="T_f725c_level0_col1" class="col_heading level0 col1" >salary_labor_cost</th>
+      <th id="T_f725c_level0_col2" class="col_heading level0 col2" >total_labor_cost</th>
+      <th id="T_f725c_level0_col3" class="col_heading level0 col3" >equipment_cost</th>
+      <th id="T_f725c_level0_col4" class="col_heading level0 col4" >total_cost</th>
+      <th id="T_f725c_level0_col5" class="col_heading level0 col5" >total_hours</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >reason</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+      <th class="blank col5" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_f725c_level0_row0" class="row_heading level0 row0" >Maintenance</th>
+      <td id="T_f725c_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_f725c_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_f725c_row0_col2" class="data row0 col2" >0</td>
+      <td id="T_f725c_row0_col3" class="data row0 col3" >2,200,843.75</td>
+      <td id="T_f725c_row0_col4" class="data row0 col4" >2,200,843.75</td>
+      <td id="T_f725c_row0_col5" class="data row0 col5" >30,183.00</td>
+    </tr>
+    <tr>
+      <th id="T_f725c_level0_row1" class="row_heading level0 row1" >Repair</th>
+      <td id="T_f725c_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_f725c_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_f725c_row1_col2" class="data row1 col2" >0</td>
+      <td id="T_f725c_row1_col3" class="data row1 col3" >36,391,793.40</td>
+      <td id="T_f725c_row1_col4" class="data row1 col4" >36,391,793.40</td>
+      <td id="T_f725c_row1_col5" class="data row1 col5" >63,034.33</td>
+    </tr>
+    <tr>
+      <th id="T_f725c_level0_row2" class="row_heading level0 row2" >Crew Transfer</th>
+      <td id="T_f725c_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_f725c_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_f725c_row2_col2" class="data row2 col2" >0</td>
+      <td id="T_f725c_row2_col3" class="data row2 col3" >1,234,583.33</td>
+      <td id="T_f725c_row2_col4" class="data row2 col4" >1,234,583.33</td>
+      <td id="T_f725c_row2_col5" class="data row2 col5" >10,279.00</td>
+    </tr>
+    <tr>
+      <th id="T_f725c_level0_row3" class="row_heading level0 row3" >Site Travel</th>
+      <td id="T_f725c_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_f725c_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_f725c_row3_col2" class="data row3 col2" >0</td>
+      <td id="T_f725c_row3_col3" class="data row3 col3" >0.00</td>
+      <td id="T_f725c_row3_col4" class="data row3 col4" >0.00</td>
+      <td id="T_f725c_row3_col5" class="data row3 col5" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_f725c_level0_row4" class="row_heading level0 row4" >Mobilization</th>
+      <td id="T_f725c_row4_col0" class="data row4 col0" >0</td>
+      <td id="T_f725c_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_f725c_row4_col2" class="data row4 col2" >0</td>
+      <td id="T_f725c_row4_col3" class="data row4 col3" >9,500,000.00</td>
+      <td id="T_f725c_row4_col4" class="data row4 col4" >9,500,000.00</td>
+      <td id="T_f725c_row4_col5" class="data row4 col5" >32,904.00</td>
+    </tr>
+    <tr>
+      <th id="T_f725c_level0_row5" class="row_heading level0 row5" >Weather Delay</th>
+      <td id="T_f725c_row5_col0" class="data row5 col0" >0</td>
+      <td id="T_f725c_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_f725c_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_f725c_row5_col3" class="data row5 col3" >37,164,495.12</td>
+      <td id="T_f725c_row5_col4" class="data row5 col4" >37,164,495.12</td>
+      <td id="T_f725c_row5_col5" class="data row5 col5" >36,940.25</td>
+    </tr>
+    <tr>
+      <th id="T_f725c_level0_row6" class="row_heading level0 row6" >No Requests</th>
+      <td id="T_f725c_row6_col0" class="data row6 col0" >0</td>
+      <td id="T_f725c_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_f725c_row6_col2" class="data row6 col2" >0</td>
+      <td id="T_f725c_row6_col3" class="data row6 col3" >27,649,439.17</td>
+      <td id="T_f725c_row6_col4" class="data row6 col4" >27,649,439.17</td>
+      <td id="T_f725c_row6_col5" class="data row6 col5" >27,839.82</td>
+    </tr>
+    <tr>
+      <th id="T_f725c_level0_row7" class="row_heading level0 row7" >Not in Shift</th>
+      <td id="T_f725c_row7_col0" class="data row7 col0" >0</td>
+      <td id="T_f725c_row7_col1" class="data row7 col1" >0</td>
+      <td id="T_f725c_row7_col2" class="data row7 col2" >0</td>
+      <td id="T_f725c_row7_col3" class="data row7 col3" >9,286,318.06</td>
+      <td id="T_f725c_row7_col4" class="data row7 col4" >9,286,318.06</td>
+      <td id="T_f725c_row7_col5" class="data row7 col5" >116,957.16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="emissions">
+<span id="metrics-demo-emissions"></span><h2>Emissions<a class="headerlink" href="#emissions" title="Link to this heading">#</a></h2>
+<p>Emissions (tons or other provided units) of all servicing equipment activity, except
+overnight waiting periods between shifts. For further documentation, see the API docs
+here: <a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.emissions" title="wombat.core.post_processor.Metrics.emissions"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.emissions()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">emissions_factors</span></code>: Dictionary of servicing equipment names and the emissions per
+hour of the following activities: <code class="docutils literal notranslate"><span class="pre">transit</span></code>, <code class="docutils literal notranslate"><span class="pre">maneuvering</span></code>, <code class="docutils literal notranslate"><span class="pre">idle</span> <span class="pre">at</span> <span class="pre">site</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">idle</span> <span class="pre">at</span> <span class="pre">port</span></code>, where port is stand-in for wherever the servicing equipment might be
+based when not at site.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maneuvering_factor</span></code>: The proportion of transit time that can generally be associated
+with positioning servicing, by default 10%.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">port_engine_on_factor</span></code>: The proportion of the idling at port time when the engine is
+running and producing emissions, by default 25%.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the emissions factors, in tons per hour</span>
+<span class="n">emissions_factors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Crew Transfer Vessel 1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;transit&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;maneuvering&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;idle at site&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s2">&quot;idle at port&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Crew Transfer Vessel 2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;transit&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;maneuvering&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;idle at site&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s2">&quot;idle at port&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Crew Transfer Vessel 3&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;transit&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;maneuvering&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;idle at site&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s2">&quot;idle at port&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Field Support Vessel&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;transit&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="s2">&quot;maneuvering&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;idle at site&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;idle at port&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Heavy Lift Vessel&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;transit&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="s2">&quot;maneuvering&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="s2">&quot;idle at site&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;idle at port&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">emissions</span><span class="p">(</span><span class="n">emissions_factors</span><span class="o">=</span><span class="n">emissions_factors</span><span class="p">,</span> <span class="n">maneuvering_factor</span><span class="o">=</span><span class="mf">0.075</span><span class="p">,</span> <span class="n">port_engine_on_factor</span><span class="o">=</span><span class="mf">0.20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_811f3" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank" >&nbsp;</th>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_811f3_level0_col0" class="col_heading level0 col0" >duration</th>
+      <th id="T_811f3_level0_col1" class="col_heading level0 col1" >distance_km</th>
+      <th id="T_811f3_level0_col2" class="col_heading level0 col2" >emissions</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >agent</th>
+      <th class="index_name level1" >category</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_811f3_level0_row0" class="row_heading level0 row0" rowspan="4">Crew Transfer Vessel 1</th>
+      <th id="T_811f3_level1_row0" class="row_heading level1 row0" >idle at port</th>
+      <td id="T_811f3_row0_col0" class="data row0 col0" >0.00</td>
+      <td id="T_811f3_row0_col1" class="data row0 col1" >0.00</td>
+      <td id="T_811f3_row0_col2" class="data row0 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row1" class="row_heading level1 row1" >idle at site</th>
+      <td id="T_811f3_row1_col0" class="data row1 col0" >39,274.83</td>
+      <td id="T_811f3_row1_col1" class="data row1 col1" >0.00</td>
+      <td id="T_811f3_row1_col2" class="data row1 col2" >19,637.41</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row2" class="row_heading level1 row2" >maneuvering</th>
+      <td id="T_811f3_row2_col0" class="data row2 col0" >0.00</td>
+      <td id="T_811f3_row2_col1" class="data row2 col1" >0.00</td>
+      <td id="T_811f3_row2_col2" class="data row2 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row3" class="row_heading level1 row3" >transit</th>
+      <td id="T_811f3_row3_col0" class="data row3 col0" >0.00</td>
+      <td id="T_811f3_row3_col1" class="data row3 col1" >inf</td>
+      <td id="T_811f3_row3_col2" class="data row3 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level0_row4" class="row_heading level0 row4" rowspan="4">Crew Transfer Vessel 2</th>
+      <th id="T_811f3_level1_row4" class="row_heading level1 row4" >idle at port</th>
+      <td id="T_811f3_row4_col0" class="data row4 col0" >0.00</td>
+      <td id="T_811f3_row4_col1" class="data row4 col1" >0.00</td>
+      <td id="T_811f3_row4_col2" class="data row4 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row5" class="row_heading level1 row5" >idle at site</th>
+      <td id="T_811f3_row5_col0" class="data row5 col0" >39,334.49</td>
+      <td id="T_811f3_row5_col1" class="data row5 col1" >0.00</td>
+      <td id="T_811f3_row5_col2" class="data row5 col2" >19,667.24</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row6" class="row_heading level1 row6" >maneuvering</th>
+      <td id="T_811f3_row6_col0" class="data row6 col0" >0.00</td>
+      <td id="T_811f3_row6_col1" class="data row6 col1" >0.00</td>
+      <td id="T_811f3_row6_col2" class="data row6 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row7" class="row_heading level1 row7" >transit</th>
+      <td id="T_811f3_row7_col0" class="data row7 col0" >0.00</td>
+      <td id="T_811f3_row7_col1" class="data row7 col1" >inf</td>
+      <td id="T_811f3_row7_col2" class="data row7 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level0_row8" class="row_heading level0 row8" rowspan="4">Crew Transfer Vessel 3</th>
+      <th id="T_811f3_level1_row8" class="row_heading level1 row8" >idle at port</th>
+      <td id="T_811f3_row8_col0" class="data row8 col0" >0.00</td>
+      <td id="T_811f3_row8_col1" class="data row8 col1" >0.00</td>
+      <td id="T_811f3_row8_col2" class="data row8 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row9" class="row_heading level1 row9" >idle at site</th>
+      <td id="T_811f3_row9_col0" class="data row9 col0" >39,368.45</td>
+      <td id="T_811f3_row9_col1" class="data row9 col1" >0.00</td>
+      <td id="T_811f3_row9_col2" class="data row9 col2" >19,684.23</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row10" class="row_heading level1 row10" >maneuvering</th>
+      <td id="T_811f3_row10_col0" class="data row10 col0" >0.00</td>
+      <td id="T_811f3_row10_col1" class="data row10 col1" >0.00</td>
+      <td id="T_811f3_row10_col2" class="data row10 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row11" class="row_heading level1 row11" >transit</th>
+      <td id="T_811f3_row11_col0" class="data row11 col0" >0.00</td>
+      <td id="T_811f3_row11_col1" class="data row11 col1" >inf</td>
+      <td id="T_811f3_row11_col2" class="data row11 col2" >0.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level0_row12" class="row_heading level0 row12" rowspan="4">Field Support Vessel</th>
+      <th id="T_811f3_level1_row12" class="row_heading level1 row12" >idle at port</th>
+      <td id="T_811f3_row12_col0" class="data row12 col0" >1,025.64</td>
+      <td id="T_811f3_row12_col1" class="data row12 col1" >0.00</td>
+      <td id="T_811f3_row12_col2" class="data row12 col2" >512.82</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row13" class="row_heading level1 row13" >idle at site</th>
+      <td id="T_811f3_row13_col0" class="data row13 col0" >1,401.50</td>
+      <td id="T_811f3_row13_col1" class="data row13 col1" >0.00</td>
+      <td id="T_811f3_row13_col2" class="data row13 col2" >1,401.50</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row14" class="row_heading level1 row14" >maneuvering</th>
+      <td id="T_811f3_row14_col0" class="data row14 col0" >415.80</td>
+      <td id="T_811f3_row14_col1" class="data row14 col1" >0.00</td>
+      <td id="T_811f3_row14_col2" class="data row14 col2" >1,663.20</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row15" class="row_heading level1 row15" >transit</th>
+      <td id="T_811f3_row15_col0" class="data row15 col0" >5,128.20</td>
+      <td id="T_811f3_row15_col1" class="data row15 col1" >inf</td>
+      <td id="T_811f3_row15_col2" class="data row15 col2" >30,769.20</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level0_row16" class="row_heading level0 row16" rowspan="4">Heavy Lift Vessel</th>
+      <th id="T_811f3_level1_row16" class="row_heading level1 row16" >idle at port</th>
+      <td id="T_811f3_row16_col0" class="data row16 col0" >5,061.60</td>
+      <td id="T_811f3_row16_col1" class="data row16 col1" >0.00</td>
+      <td id="T_811f3_row16_col2" class="data row16 col2" >2,530.80</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row17" class="row_heading level1 row17" >idle at site</th>
+      <td id="T_811f3_row17_col0" class="data row17 col0" >9,978.00</td>
+      <td id="T_811f3_row17_col1" class="data row17 col1" >0.00</td>
+      <td id="T_811f3_row17_col2" class="data row17 col2" >9,978.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row18" class="row_heading level1 row18" >maneuvering</th>
+      <td id="T_811f3_row18_col0" class="data row18 col0" >2,052.00</td>
+      <td id="T_811f3_row18_col1" class="data row18 col1" >0.00</td>
+      <td id="T_811f3_row18_col2" class="data row18 col2" >14,364.00</td>
+    </tr>
+    <tr>
+      <th id="T_811f3_level1_row19" class="row_heading level1 row19" >transit</th>
+      <td id="T_811f3_row19_col0" class="data row19 col0" >25,308.00</td>
+      <td id="T_811f3_row19_col1" class="data row19 col1" >inf</td>
+      <td id="T_811f3_row19_col2" class="data row19 col2" >303,696.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="component-costs">
+<span id="metrics-demo-component-costs"></span><h2>Component Costs<a class="headerlink" href="#component-costs" title="Link to this heading">#</a></h2>
+<p>All the costs associated with maintenance and failure events during the simulation,
+including delays incurred during the repair process, but excluding costs not directly
+tied to a repair. For further documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.component_costs" title="wombat.core.post_processor.Metrics.component_costs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.component_costs()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_category</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Computed across each cost category</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Aggregated to the sum of all categories</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_action</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: Computed by each of &quot;repair&quot;, &quot;maintenance&quot;, and &quot;delay&quot;, and is included in
+the MultiIndex</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: Aggregated as the sum of all actions</p></li>
+</ul>
+</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">action</span></code> definitions:</p>
+<ul class="simple">
+<li><p>maintenance: routine maintenance</p></li>
+<li><p>repair: unscheduled maintenance, ranging from inspections to replacements</p></li>
+<li><p>delay: Any delays caused by unsafe weather conditions or not being able to finish a
+process within a single shift</p></li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals by component</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">component_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">by_action</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_84ffe" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_84ffe_level0_col0" class="col_heading level0 col0" >total_cost</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >component</th>
+      <th class="blank col0" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_84ffe_level0_row0" class="row_heading level0 row0" >turbine</th>
+      <td id="T_84ffe_row0_col0" class="data row0 col0" >138,788,723.22</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals by each category and action type</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">component_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">by_action</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_495fc" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank" >&nbsp;</th>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_495fc_level0_col0" class="col_heading level0 col0" >materials_cost</th>
+      <th id="T_495fc_level0_col1" class="col_heading level0 col1" >total_labor_cost</th>
+      <th id="T_495fc_level0_col2" class="col_heading level0 col2" >equipment_cost</th>
+      <th id="T_495fc_level0_col3" class="col_heading level0 col3" >total_cost</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >component</th>
+      <th class="index_name level1" >action</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_495fc_level0_row0" class="row_heading level0 row0" rowspan="3">turbine</th>
+      <th id="T_495fc_level1_row0" class="row_heading level1 row0" >delay</th>
+      <td id="T_495fc_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_495fc_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_495fc_row0_col2" class="data row0 col2" >46,438,502.73</td>
+      <td id="T_495fc_row0_col3" class="data row0 col3" >46,438,502.73</td>
+    </tr>
+    <tr>
+      <th id="T_495fc_level1_row1" class="row_heading level1 row1" >maintenance</th>
+      <td id="T_495fc_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_495fc_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_495fc_row1_col2" class="data row1 col2" >2,200,843.75</td>
+      <td id="T_495fc_row1_col3" class="data row1 col3" >2,200,843.75</td>
+    </tr>
+    <tr>
+      <th id="T_495fc_level1_row2" class="row_heading level1 row2" >repair</th>
+      <td id="T_495fc_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_495fc_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_495fc_row2_col2" class="data row2 col2" >36,391,793.40</td>
+      <td id="T_495fc_row2_col3" class="data row2 col3" >36,391,793.40</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="fixed-cost-impacts">
+<span id="metrics-demo-fixed-costs"></span><h2>Fixed Cost Impacts<a class="headerlink" href="#fixed-cost-impacts" title="Link to this heading">#</a></h2>
+<p>Computes the total costs of the fixed costs categories. For further documentation, see
+the definition docs, here: <a class="reference internal" href="../API/types.html#wombat.core.data_classes.FixedCosts" title="wombat.core.data_classes.FixedCosts"><code class="xref py py-class docutils literal notranslate"><span class="pre">wombat.core.data_classes.FixedCosts</span></code></a>, or the API
+docs here: <code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.fixed_costs()</span></code>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resolution</span></code> (also, demonstrated below)</p>
+<ul>
+<li><p>&quot;high&quot;: Computed across the most granular cost levels</p></li>
+<li><p>&quot;medium&quot;: Computed for each general cost category</p></li>
+<li><p>&quot;low&quot;: Aggregated to a single sum of costs</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">fixed_costs</span><span class="o">.</span><span class="n">hierarchy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;operations&#39;: {&#39;annual_leases_fees&#39;: [&#39;submerge_land_lease_costs&#39;,
+                                       &#39;transmission_charges_rights&#39;],
+                &#39;environmental_health_safety_monitoring&#39;: [],
+                &#39;insurance&#39;: [&#39;brokers_fee&#39;,
+                              &#39;operations_all_risk&#39;,
+                              &#39;business_interruption&#39;,
+                              &#39;third_party_liability&#39;,
+                              &#39;storm_coverage&#39;],
+                &#39;labor&#39;: [],
+                &#39;onshore_electrical_maintenance&#39;: [],
+                &#39;operating_facilities&#39;: [],
+                &#39;operations_management_administration&#39;: [&#39;project_management_administration&#39;,
+                                                         &#39;marine_management&#39;,
+                                                         &#39;weather_forecasting&#39;,
+                                                         &#39;condition_monitoring&#39;]}}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals at the highest level</span>
+<span class="c1"># NOTE: there were no fixed costs defined in this example, so all values will be 0, so</span>
+<span class="c1">#       this will just be demonstrating the output format</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">project_fixed_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;low&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_8aab4" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_8aab4_level0_col0" class="col_heading level0 col0" >operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_8aab4_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_8aab4_row0_col0" class="data row0 col0" >16,013,230.75</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals at the medium level</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">project_fixed_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;medium&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_c0259" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_c0259_level0_col0" class="col_heading level0 col0" >operations_management_administration</th>
+      <th id="T_c0259_level0_col1" class="col_heading level0 col1" >insurance</th>
+      <th id="T_c0259_level0_col2" class="col_heading level0 col2" >annual_leases_fees</th>
+      <th id="T_c0259_level0_col3" class="col_heading level0 col3" >operating_facilities</th>
+      <th id="T_c0259_level0_col4" class="col_heading level0 col4" >environmental_health_safety_monitoring</th>
+      <th id="T_c0259_level0_col5" class="col_heading level0 col5" >onshore_electrical_maintenance</th>
+      <th id="T_c0259_level0_col6" class="col_heading level0 col6" >labor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_c0259_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c0259_row0_col0" class="data row0 col0" >0.00</td>
+      <td id="T_c0259_row0_col1" class="data row0 col1" >0.00</td>
+      <td id="T_c0259_row0_col2" class="data row0 col2" >0.00</td>
+      <td id="T_c0259_row0_col3" class="data row0 col3" >0.00</td>
+      <td id="T_c0259_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_c0259_row0_col5" class="data row0 col5" >0.00</td>
+      <td id="T_c0259_row0_col6" class="data row0 col6" >16,013,230.75</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals at the lowest level</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">project_fixed_costs</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;high&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_4302f" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_4302f_level0_col0" class="col_heading level0 col0" >project_management_administration</th>
+      <th id="T_4302f_level0_col1" class="col_heading level0 col1" >marine_management</th>
+      <th id="T_4302f_level0_col2" class="col_heading level0 col2" >weather_forecasting</th>
+      <th id="T_4302f_level0_col3" class="col_heading level0 col3" >condition_monitoring</th>
+      <th id="T_4302f_level0_col4" class="col_heading level0 col4" >brokers_fee</th>
+      <th id="T_4302f_level0_col5" class="col_heading level0 col5" >operations_all_risk</th>
+      <th id="T_4302f_level0_col6" class="col_heading level0 col6" >business_interruption</th>
+      <th id="T_4302f_level0_col7" class="col_heading level0 col7" >third_party_liability</th>
+      <th id="T_4302f_level0_col8" class="col_heading level0 col8" >storm_coverage</th>
+      <th id="T_4302f_level0_col9" class="col_heading level0 col9" >submerge_land_lease_costs</th>
+      <th id="T_4302f_level0_col10" class="col_heading level0 col10" >transmission_charges_rights</th>
+      <th id="T_4302f_level0_col11" class="col_heading level0 col11" >operating_facilities</th>
+      <th id="T_4302f_level0_col12" class="col_heading level0 col12" >environmental_health_safety_monitoring</th>
+      <th id="T_4302f_level0_col13" class="col_heading level0 col13" >onshore_electrical_maintenance</th>
+      <th id="T_4302f_level0_col14" class="col_heading level0 col14" >labor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_4302f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_4302f_row0_col0" class="data row0 col0" >0.00</td>
+      <td id="T_4302f_row0_col1" class="data row0 col1" >0.00</td>
+      <td id="T_4302f_row0_col2" class="data row0 col2" >0.00</td>
+      <td id="T_4302f_row0_col3" class="data row0 col3" >0.00</td>
+      <td id="T_4302f_row0_col4" class="data row0 col4" >0.00</td>
+      <td id="T_4302f_row0_col5" class="data row0 col5" >0.00</td>
+      <td id="T_4302f_row0_col6" class="data row0 col6" >0.00</td>
+      <td id="T_4302f_row0_col7" class="data row0 col7" >0.00</td>
+      <td id="T_4302f_row0_col8" class="data row0 col8" >0.00</td>
+      <td id="T_4302f_row0_col9" class="data row0 col9" >0.00</td>
+      <td id="T_4302f_row0_col10" class="data row0 col10" >0.00</td>
+      <td id="T_4302f_row0_col11" class="data row0 col11" >0.00</td>
+      <td id="T_4302f_row0_col12" class="data row0 col12" >0.00</td>
+      <td id="T_4302f_row0_col13" class="data row0 col13" >0.00</td>
+      <td id="T_4302f_row0_col14" class="data row0 col14" >16,013,230.75</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="opex">
+<span id="metrics-demo-opex"></span><h2>OpEx<a class="headerlink" href="#opex" title="Link to this heading">#</a></h2>
+<p>Computes the total cost of all operating expenditures for the duration of the
+simulation, including fixed costs. For further documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.opex" title="wombat.core.post_processor.Metrics.opex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.opex()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by_category</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code> shows the port fees, fixed costs, labor costs, equipment costs, and materials
+costs in addition the total OpEx</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code> shows only the total OpEx</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">opex</span><span class="p">(</span><span class="s2">&quot;annual&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10/site-packages/wombat/core/post_processor.py:1955: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
+  port_fees = port_fees.fillna(0)
+</pre></div>
+</div>
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_d8e58" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_d8e58_level0_col0" class="col_heading level0 col0" >OpEx</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >year</th>
+      <th class="blank col0" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_d8e58_level0_row0" class="row_heading level0 row0" >2003</th>
+      <td id="T_d8e58_row0_col0" class="data row0 col0" >11,239,073.73</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row1" class="row_heading level0 row1" >2004</th>
+      <td id="T_d8e58_row1_col0" class="data row1 col0" >19,800,822.56</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row2" class="row_heading level0 row2" >2005</th>
+      <td id="T_d8e58_row2_col0" class="data row2 col0" >18,079,533.96</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row3" class="row_heading level0 row3" >2006</th>
+      <td id="T_d8e58_row3_col0" class="data row3 col0" >12,519,911.67</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row4" class="row_heading level0 row4" >2007</th>
+      <td id="T_d8e58_row4_col0" class="data row4 col0" >20,407,617.42</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row5" class="row_heading level0 row5" >2008</th>
+      <td id="T_d8e58_row5_col0" class="data row5 col0" >23,046,354.23</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row6" class="row_heading level0 row6" >2009</th>
+      <td id="T_d8e58_row6_col0" class="data row6 col0" >19,319,078.36</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row7" class="row_heading level0 row7" >2010</th>
+      <td id="T_d8e58_row7_col0" class="data row7 col0" >24,323,338.76</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row8" class="row_heading level0 row8" >2011</th>
+      <td id="T_d8e58_row8_col0" class="data row8 col0" >23,202,482.06</td>
+    </tr>
+    <tr>
+      <th id="T_d8e58_level0_row9" class="row_heading level0 row9" >2012</th>
+      <td id="T_d8e58_row9_col0" class="data row9 col0" >20,025,490.83</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">opex</span><span class="p">(</span><span class="s2">&quot;annual&quot;</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10/site-packages/wombat/core/post_processor.py:1955: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
+  port_fees = port_fees.fillna(0)
+</pre></div>
+</div>
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_07c7c" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_07c7c_level0_col0" class="col_heading level0 col0" >operations</th>
+      <th id="T_07c7c_level0_col1" class="col_heading level0 col1" >port_fees</th>
+      <th id="T_07c7c_level0_col2" class="col_heading level0 col2" >equipment_cost</th>
+      <th id="T_07c7c_level0_col3" class="col_heading level0 col3" >total_labor_cost</th>
+      <th id="T_07c7c_level0_col4" class="col_heading level0 col4" >materials_cost</th>
+      <th id="T_07c7c_level0_col5" class="col_heading level0 col5" >OpEx</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >year</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+      <th class="blank col5" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_07c7c_level0_row0" class="row_heading level0 row0" >2003</th>
+      <td id="T_07c7c_row0_col0" class="data row0 col0" >1,600,008.00</td>
+      <td id="T_07c7c_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_07c7c_row0_col2" class="data row0 col2" >7,284,565.73</td>
+      <td id="T_07c7c_row0_col3" class="data row0 col3" >0</td>
+      <td id="T_07c7c_row0_col4" class="data row0 col4" >2,354,500</td>
+      <td id="T_07c7c_row0_col5" class="data row0 col5" >11,239,073.73</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row1" class="row_heading level0 row1" >2004</th>
+      <td id="T_07c7c_row1_col0" class="data row1 col0" >1,604,391.58</td>
+      <td id="T_07c7c_row1_col1" class="data row1 col1" >0</td>
+      <td id="T_07c7c_row1_col2" class="data row1 col2" >12,991,430.98</td>
+      <td id="T_07c7c_row1_col3" class="data row1 col3" >0</td>
+      <td id="T_07c7c_row1_col4" class="data row1 col4" >5,205,000</td>
+      <td id="T_07c7c_row1_col5" class="data row1 col5" >19,800,822.56</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row2" class="row_heading level0 row2" >2005</th>
+      <td id="T_07c7c_row2_col0" class="data row2 col0" >1,600,008.00</td>
+      <td id="T_07c7c_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_07c7c_row2_col2" class="data row2 col2" >12,009,025.96</td>
+      <td id="T_07c7c_row2_col3" class="data row2 col3" >0</td>
+      <td id="T_07c7c_row2_col4" class="data row2 col4" >4,470,500</td>
+      <td id="T_07c7c_row2_col5" class="data row2 col5" >18,079,533.96</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row3" class="row_heading level0 row3" >2006</th>
+      <td id="T_07c7c_row3_col0" class="data row3 col0" >1,600,008.00</td>
+      <td id="T_07c7c_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_07c7c_row3_col2" class="data row3 col2" >7,287,903.67</td>
+      <td id="T_07c7c_row3_col3" class="data row3 col3" >0</td>
+      <td id="T_07c7c_row3_col4" class="data row3 col4" >3,632,000</td>
+      <td id="T_07c7c_row3_col5" class="data row3 col5" >12,519,911.67</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row4" class="row_heading level0 row4" >2007</th>
+      <td id="T_07c7c_row4_col0" class="data row4 col0" >1,600,008.00</td>
+      <td id="T_07c7c_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_07c7c_row4_col2" class="data row4 col2" >12,470,109.42</td>
+      <td id="T_07c7c_row4_col3" class="data row4 col3" >0</td>
+      <td id="T_07c7c_row4_col4" class="data row4 col4" >6,337,500</td>
+      <td id="T_07c7c_row4_col5" class="data row4 col5" >20,407,617.42</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row5" class="row_heading level0 row5" >2008</th>
+      <td id="T_07c7c_row5_col0" class="data row5 col0" >1,604,391.58</td>
+      <td id="T_07c7c_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_07c7c_row5_col2" class="data row5 col2" >15,982,462.64</td>
+      <td id="T_07c7c_row5_col3" class="data row5 col3" >0</td>
+      <td id="T_07c7c_row5_col4" class="data row5 col4" >5,459,500</td>
+      <td id="T_07c7c_row5_col5" class="data row5 col5" >23,046,354.23</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row6" class="row_heading level0 row6" >2009</th>
+      <td id="T_07c7c_row6_col0" class="data row6 col0" >1,600,008.00</td>
+      <td id="T_07c7c_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_07c7c_row6_col2" class="data row6 col2" >12,029,570.36</td>
+      <td id="T_07c7c_row6_col3" class="data row6 col3" >0</td>
+      <td id="T_07c7c_row6_col4" class="data row6 col4" >5,689,500</td>
+      <td id="T_07c7c_row6_col5" class="data row6 col5" >19,319,078.36</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row7" class="row_heading level0 row7" >2010</th>
+      <td id="T_07c7c_row7_col0" class="data row7 col0" >1,600,008.00</td>
+      <td id="T_07c7c_row7_col1" class="data row7 col1" >0</td>
+      <td id="T_07c7c_row7_col2" class="data row7 col2" >15,896,330.76</td>
+      <td id="T_07c7c_row7_col3" class="data row7 col3" >0</td>
+      <td id="T_07c7c_row7_col4" class="data row7 col4" >6,827,000</td>
+      <td id="T_07c7c_row7_col5" class="data row7 col5" >24,323,338.76</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row8" class="row_heading level0 row8" >2011</th>
+      <td id="T_07c7c_row8_col0" class="data row8 col0" >1,600,008.00</td>
+      <td id="T_07c7c_row8_col1" class="data row8 col1" >0</td>
+      <td id="T_07c7c_row8_col2" class="data row8 col2" >14,868,474.06</td>
+      <td id="T_07c7c_row8_col3" class="data row8 col3" >0</td>
+      <td id="T_07c7c_row8_col4" class="data row8 col4" >6,734,000</td>
+      <td id="T_07c7c_row8_col5" class="data row8 col5" >23,202,482.06</td>
+    </tr>
+    <tr>
+      <th id="T_07c7c_level0_row9" class="row_heading level0 row9" >2012</th>
+      <td id="T_07c7c_row9_col0" class="data row9 col0" >1,604,391.58</td>
+      <td id="T_07c7c_row9_col1" class="data row9 col1" >0</td>
+      <td id="T_07c7c_row9_col2" class="data row9 col2" >12,607,599.25</td>
+      <td id="T_07c7c_row9_col3" class="data row9 col3" >0</td>
+      <td id="T_07c7c_row9_col4" class="data row9 col4" >5,813,500</td>
+      <td id="T_07c7c_row9_col5" class="data row9 col5" >20,025,490.83</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="process-times">
+<span id="metrics-demo-process-times"></span><h2>Process Times<a class="headerlink" href="#process-times" title="Link to this heading">#</a></h2>
+<p>Computes the total number of hours spent from repair request submission to completion,
+performing repairs, and the number of request for each repair category. For further
+documentation, see the API docs here:
+<a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.process_times" title="wombat.core.post_processor.Metrics.process_times"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.process_times()</span></code></a>.</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">process_times</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_fea05" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_fea05_level0_col0" class="col_heading level0 col0" >time_to_completion</th>
+      <th id="T_fea05_level0_col1" class="col_heading level0 col1" >process_time</th>
+      <th id="T_fea05_level0_col2" class="col_heading level0 col2" >downtime</th>
+      <th id="T_fea05_level0_col3" class="col_heading level0 col3" >time_to_start</th>
+      <th id="T_fea05_level0_col4" class="col_heading level0 col4" >N</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >category</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_fea05_level0_row0" class="row_heading level0 row0" >annual service</th>
+      <td id="T_fea05_row0_col0" class="data row0 col0" >5,395,344.49</td>
+      <td id="T_fea05_row0_col1" class="data row0 col1" >80,007.54</td>
+      <td id="T_fea05_row0_col2" class="data row0 col2" >125,269.02</td>
+      <td id="T_fea05_row0_col3" class="data row0 col3" >4,039,017.49</td>
+      <td id="T_fea05_row0_col4" class="data row0 col4" >1,043</td>
+    </tr>
+    <tr>
+      <th id="T_fea05_level0_row1" class="row_heading level0 row1" >major repair</th>
+      <td id="T_fea05_row1_col0" class="data row1 col0" >100,102.00</td>
+      <td id="T_fea05_row1_col1" class="data row1 col1" >3,093.78</td>
+      <td id="T_fea05_row1_col2" class="data row1 col2" >3,075.00</td>
+      <td id="T_fea05_row1_col3" class="data row1 col3" >94,804.33</td>
+      <td id="T_fea05_row1_col4" class="data row1 col4" >42</td>
+    </tr>
+    <tr>
+      <th id="T_fea05_level0_row2" class="row_heading level0 row2" >major replacement</th>
+      <td id="T_fea05_row2_col0" class="data row2 col0" >173,997.66</td>
+      <td id="T_fea05_row2_col1" class="data row2 col1" >10,767.80</td>
+      <td id="T_fea05_row2_col2" class="data row2 col2" >17,697.05</td>
+      <td id="T_fea05_row2_col3" class="data row2 col3" >162,795.94</td>
+      <td id="T_fea05_row2_col4" class="data row2 col4" >95</td>
+    </tr>
+    <tr>
+      <th id="T_fea05_level0_row3" class="row_heading level0 row3" >manual reset</th>
+      <td id="T_fea05_row3_col0" class="data row3 col0" >1,583,656.13</td>
+      <td id="T_fea05_row3_col1" class="data row3 col1" >80,274.99</td>
+      <td id="T_fea05_row3_col2" class="data row3 col2" >103,844.89</td>
+      <td id="T_fea05_row3_col3" class="data row3 col3" >1,445,380.56</td>
+      <td id="T_fea05_row3_col4" class="data row3 col4" >8,478</td>
+    </tr>
+    <tr>
+      <th id="T_fea05_level0_row4" class="row_heading level0 row4" >medium repair</th>
+      <td id="T_fea05_row4_col0" class="data row4 col0" >31,340.59</td>
+      <td id="T_fea05_row4_col1" class="data row4 col1" >19,757.57</td>
+      <td id="T_fea05_row4_col2" class="data row4 col2" >19,860.35</td>
+      <td id="T_fea05_row4_col3" class="data row4 col3" >8,232.23</td>
+      <td id="T_fea05_row4_col4" class="data row4 col4" >330</td>
+    </tr>
+    <tr>
+      <th id="T_fea05_level0_row5" class="row_heading level0 row5" >minor repair</th>
+      <td id="T_fea05_row5_col0" class="data row5 col0" >204,433.50</td>
+      <td id="T_fea05_row5_col1" class="data row5 col1" >63,283.37</td>
+      <td id="T_fea05_row5_col2" class="data row5 col2" >63,466.80</td>
+      <td id="T_fea05_row5_col3" class="data row5 col3" >127,371.50</td>
+      <td id="T_fea05_row5_col4" class="data row5 col4" >3,335</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="power-production">
+<span id="metrics-demo-power-production"></span><h2>Power Production<a class="headerlink" href="#power-production" title="Link to this heading">#</a></h2>
+<p>Computes the total power production for the wind farm. For further documentation, see
+the API docs here: <a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.power_production" title="wombat.core.post_processor.Metrics.power_production"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.power_production()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">by</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a> options: &quot;windfarm&quot; and &quot;turbine&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p>
+<ul>
+<li><p>&quot;kwh&quot;: kilowatt-hours (kWh)</p></li>
+<li><p>&quot;mwh&quot;: megawatt-hours (MWh)</p></li>
+<li><p>&quot;gwh&quot;: gigawatt-hours (GWh)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals, in kWh, at the wind farm level</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">power_production</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;windfarm&quot;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;kwh&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_838bd" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_838bd_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_838bd_level0_row0" class="row_heading level0 row0" >Project Energy Production (kWh)</th>
+      <td id="T_838bd_row0_col0" class="data row0 col0" >9,683,892,169.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals, in MWh, at the wind farm level</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">power_production</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;mwh&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_64c61" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_64c61_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_64c61_level0_row0" class="row_heading level0 row0" >Project Energy Production (MWh)</th>
+      <td id="T_64c61_row0_col0" class="data row0 col0" >9,683,892.17</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Project totals, in GWh, at the wind farm level</span>
+<span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">power_production</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s2">&quot;project&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_1c029" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_1c029_level0_col0" class="col_heading level0 col0" >windfarm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_1c029_level0_row0" class="row_heading level0 row0" >Project Energy Production (GWh)</th>
+      <td id="T_1c029_row0_col0" class="data row0 col0" >9,683.89</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="net-present-value">
+<span id="metrics-demo-npv"></span><h2>Net Present Value<a class="headerlink" href="#net-present-value" title="Link to this heading">#</a></h2>
+<p>Calcualtes the net present value (NPV) for the project, as
+<span class="math notranslate nohighlight">\(NPV = (Power * OfftakePrice - OpEx) / (1 + DiscountRate)\)</span>.</p>
+<p>For further documentation, see the API docs here: <a class="reference internal" href="../API/simulation_api.html#wombat.core.post_processor.Metrics.npv" title="wombat.core.post_processor.Metrics.npv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">wombat.core.post_processor.Metrics.npv()</span></code></a>.</p>
+<p><strong>Inputs</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code>, as explained <a class="reference internal" href="#metrics-demo-common-parameters"><span class="std std-ref">above</span></a>, options: &quot;project&quot;,
+&quot;annual&quot;, &quot;monthly&quot;, and &quot;month-year&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">discount_rate</span></code>: The rate of return that could be earned on alternative investments,
+by default 0.025.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offtake_price</span></code>: Price of energy, per MWh, by default 80.</p></li>
+</ul>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">style</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">opex</span><span class="p">(</span><span class="s2">&quot;annual&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10/site-packages/wombat/core/post_processor.py:1955: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
+  port_fees = port_fees.fillna(0)
+</pre></div>
+</div>
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_6d5e8" style="font-size: 14px; grid-column-count: 6">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_6d5e8_level0_col0" class="col_heading level0 col0" >OpEx</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >year</th>
+      <th class="blank col0" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_6d5e8_level0_row0" class="row_heading level0 row0" >2003</th>
+      <td id="T_6d5e8_row0_col0" class="data row0 col0" >11,239,073.73</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row1" class="row_heading level0 row1" >2004</th>
+      <td id="T_6d5e8_row1_col0" class="data row1 col0" >19,800,822.56</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row2" class="row_heading level0 row2" >2005</th>
+      <td id="T_6d5e8_row2_col0" class="data row2 col0" >18,079,533.96</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row3" class="row_heading level0 row3" >2006</th>
+      <td id="T_6d5e8_row3_col0" class="data row3 col0" >12,519,911.67</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row4" class="row_heading level0 row4" >2007</th>
+      <td id="T_6d5e8_row4_col0" class="data row4 col0" >20,407,617.42</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row5" class="row_heading level0 row5" >2008</th>
+      <td id="T_6d5e8_row5_col0" class="data row5 col0" >23,046,354.23</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row6" class="row_heading level0 row6" >2009</th>
+      <td id="T_6d5e8_row6_col0" class="data row6 col0" >19,319,078.36</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row7" class="row_heading level0 row7" >2010</th>
+      <td id="T_6d5e8_row7_col0" class="data row7 col0" >24,323,338.76</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row8" class="row_heading level0 row8" >2011</th>
+      <td id="T_6d5e8_row8_col0" class="data row8 col0" >23,202,482.06</td>
+    </tr>
+    <tr>
+      <th id="T_6d5e8_level0_row9" class="row_heading level0 row9" >2012</th>
+      <td id="T_6d5e8_row9_col0" class="data row9 col0" >20,025,490.83</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="strategy_demonstration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Servicing Strategies</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="examples_reference.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examples Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-parameter-explanations">Common Parameter Explanations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency"><code class="docutils literal notranslate"><span class="pre">frequency</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by"><code class="docutils literal notranslate"><span class="pre">by</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#availability">Availability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#capacity-factor">Capacity Factor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-completion-rate">Task Completion Rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-costs">Equipment Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#service-equipment-utilization-rate">Service Equipment Utilization Rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vessel-crew-hours-at-sea">Vessel-Crew Hours at Sea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-tows">Number of Tows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#labor-costs">Labor Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-and-labor-costs">Equipment and Labor Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emissions">Emissions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#component-costs">Component Costs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-cost-impacts">Fixed Cost Impacts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opex">OpEx</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-times">Process Times</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-production">Power Production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-present-value">Net Present Value</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rob Hammond
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021 Alliance for Sustainable Energy, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
